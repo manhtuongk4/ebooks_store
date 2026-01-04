@@ -6,7 +6,11 @@ $page_title = "Đăng nhập";
 $error = '';
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    header('Location: ' . BASE_URL . '/index.php');
+    if (isset($_SESSION['admin_id'])) {
+        header('Location: ' . ADMIN_URL . '/index.php');
+    } else {
+        header('Location: ' . USER_URL . '/index.php');
+    }
     exit();
 }
 
@@ -16,25 +20,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($email === '' || $password === '') {
         $error = 'Vui lòng nhập đầy đủ email và mật khẩu.';
     } else {
-        $stmt = $conn->prepare('SELECT MaKH, HoTenKH, PasswordHash FROM khach_hang WHERE Email = ? LIMIT 1');
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            if ($password === $row['PasswordHash']) { // Plaintext for demo, use password_hash in production
+        //Admin check
+        $stmt_admin = $conn->prepare('SELECT MaNhanVien, HoTenNV, PasswordHash FROM nhan_vien WHERE Email = ? LIMIT 1');
+        $stmt_admin->bind_param('s', $email);
+        $stmt_admin->execute();
+        $result_admin = $stmt_admin->get_result();
+        if ($row_admin = $result_admin->fetch_assoc()) {
+            if ($password === $row_admin['PasswordHash']) { // Plaintext for demo
                 $_SESSION['logged_in'] = true;
-                $_SESSION['user_id'] = $row['MaKH'];
-                $_SESSION['username'] = $row['HoTenKH'];
+                $_SESSION['admin_id'] = $row_admin['MaNhanVien'];
+                $_SESSION['admin_name'] = $row_admin['HoTenNV'];
                 $_SESSION['email'] = $email;
-                header('Location: ' . BASE_URL . '/index.php');
+                header('Location: ' . ADMIN_URL . '/index.php');
                 exit();
             } else {
                 $error = 'Mật khẩu không đúng.';
             }
         } else {
-            $error = 'Email không tồn tại.';
+            //User check
+            $stmt = $conn->prepare('SELECT MaKH, HoTenKH, PasswordHash FROM khach_hang WHERE Email = ? LIMIT 1');
+            $stmt->bind_param('s', $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($row = $result->fetch_assoc()) {
+                if ($password === $row['PasswordHash']) { // Plaintext for demo
+                    $_SESSION['logged_in'] = true;
+                    $_SESSION['user_id'] = $row['MaKH'];
+                    $_SESSION['username'] = $row['HoTenKH'];
+                    $_SESSION['email'] = $email;
+                    header('Location: ' . USER_URL . '/index.php');
+                    exit();
+                } else {
+                    $error = 'Mật khẩu không đúng.';
+                }
+            } else {
+                $error = 'Email không tồn tại.';
+            }
+            $stmt->close();
         }
-        $stmt->close();
+        $stmt_admin->close();
     }
 }
 ?>

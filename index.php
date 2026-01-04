@@ -64,11 +64,11 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     </div>
                                     <article class="item_blog_base first">
-                                        <a class="thumb " href="/nha-nam-bookfest-hoi-sach-tri-an" title="NHÃ NAM BOOKFEST - HỘI SÁCH TRI ÂN">
+                                        <a class="thumb " href="#" title="MỜ TÊ BOOKFEST - HỘI SÁCH TRI ÂN">
                                             <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/z7222165973517-1a550cde17a0b848f8f7e5c32015cc13.jpg?v=1763088395910" alt="NHÃ NAM BOOKFEST - HỘI SÁCH TRI ÂN" class="lazyload img-responsive loading" data-was-processed="true">
                                         </a>
                                         <div class="content_blog">
-                                            <h3><a href="/nha-nam-bookfest-hoi-sach-tri-an" title="NHÃ NAM BOOKFEST - HỘI SÁCH TRI ÂN" class="a-title">NHÃ NAM BOOKFEST - HỘI SÁCH TRI ÂN</a></h3>
+                                            <h3><a href="#" title="MỜ TÊ BOOKFEST - HỘI SÁCH TRI ÂN" class="a-title">NHÃ NAM BOOKFEST - HỘI SÁCH TRI ÂN</a></h3>
                                             <span>
                                                 Thứ Năm,
                                                 13/11/2025</span>
@@ -80,11 +80,11 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     </div>
                                     <article class="item_blog_base first">
-                                        <a class="thumb " href="/thong-bao-chuyen-tru-so-van-phong-nha-nam-ha-noi-va-thay-doi-dia-diem-hieu-sach" title="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG NHÃ NAM HÀ NỘI VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH">
+                                        <a class="thumb " href="#" title="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG MỜ TÊ NHA TRANG VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH">
                                             <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/nha-nam-truso.jpg?v=1763022277093" alt="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG NHÃ NAM HÀ NỘI VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH" class="lazyload img-responsive loading" data-was-processed="true">
                                         </a>
                                         <div class="content_blog">
-                                            <h3><a href="/thong-bao-chuyen-tru-so-van-phong-nha-nam-ha-noi-va-thay-doi-dia-diem-hieu-sach" title="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG NHÃ NAM HÀ NỘI VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH" class="a-title">THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG NHÃ NAM HÀ NỘI VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH</a></h3>
+                                            <h3><a href="#" title="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG MỜ TÊ NHA TRANG VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH" class="a-title">THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG NHÃ NAM HÀ NỘI VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH</a></h3>
                                             <span>
                                                 Thứ Năm,
                                                 13/11/2025</span>
@@ -96,11 +96,11 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     </div>
                                     <article class="item_blog_base first">
-                                        <a class="thumb " href="/thong-bao-dat-truoc-ban-bia-cung-gioi-han-co-chu-ky-tac-gia-doi-gio-bui" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI">
+                                        <a class="thumb " href="#" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI">
                                             <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/dat-truoc-bia-cung-gioi-han-co-chu-ky-4.png?v=1764565517637" alt="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="lazyload img-responsive loading" data-was-processed="true">
                                         </a>
                                         <div class="content_blog">
-                                            <h3><a href="/thong-bao-dat-truoc-ban-bia-cung-gioi-han-co-chu-ky-tac-gia-doi-gio-bui" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="a-title">THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ "ĐỜI GIÓ BỤI"</a></h3>
+                                            <h3><a href="#" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="a-title">THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ "ĐỜI GIÓ BỤI"</a></h3>
                                             <span>
                                                 Thứ Hai,
                                                 01/12/2025</span>
@@ -117,11 +117,11 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                             </div>
                             <article class="item_blog_base first">
-                                <a class="thumb " href="/tua-thinh-khong-ban-di-chuc-bang-tinh-yeu-cua-mot-nguoi-me-sap-lia-xa-cuoc-doi" title="Tựa thinh không – Bản di chúc bằng tình yêu của một người mẹ sắp lìa xa cuộc đời">
+                                <a class="thumb " href="#" title="Tựa thinh không – Bản di chúc bằng tình yêu của một người mẹ sắp lìa xa cuộc đời">
                                     <img width="196" height="125" src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-36.png?v=1762396324183" data-src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-36.png?v=1762396324183" alt="Tựa thinh không – Bản di chúc bằng tình yêu của một người mẹ sắp lìa xa cuộc đời" class="lazyload img-responsive loaded" data-was-processed="true">
                                 </a>
                                 <div class="content_blog">
-                                    <h3><a href="/tua-thinh-khong-ban-di-chuc-bang-tinh-yeu-cua-mot-nguoi-me-sap-lia-xa-cuoc-doi" title="Tựa thinh không – Bản di chúc bằng tình yêu của một người mẹ sắp lìa xa cuộc đời" class="a-title">Tựa thinh không – Bản di chúc bằng tình yêu của một người mẹ sắp lìa xa cuộc đời</a></h3>
+                                    <h3><a href="#" title="Tựa thinh không – Bản di chúc bằng tình yêu của một người mẹ sắp lìa xa cuộc đời" class="a-title">Tựa thinh không – Bản di chúc bằng tình yêu của một người mẹ sắp lìa xa cuộc đời</a></h3>
                                     <span>
                                         Thứ Năm,
                                         06/11/2025</span>
@@ -133,11 +133,11 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                             </div>
                             <article class="item_blog_base first">
-                                <a class="thumb " href="/w-somerset-maugham-boc-tran-the-gioi-van-chuong" title="W. Somerset Maugham bóc trần thế giới văn chương">
+                                <a class="thumb " href="#" title="W. Somerset Maugham bóc trần thế giới văn chương">
                                     <img width="196" height="125" src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-35.png?v=1762395092577" data-src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-35.png?v=1762395092577" alt="W. Somerset Maugham bóc trần thế giới văn chương" class="lazyload img-responsive loaded" data-was-processed="true">
                                 </a>
                                 <div class="content_blog">
-                                    <h3><a href="/w-somerset-maugham-boc-tran-the-gioi-van-chuong" title="W. Somerset Maugham bóc trần thế giới văn chương" class="a-title">W. Somerset Maugham bóc trần thế giới văn chương</a></h3>
+                                    <h3><a href="#" title="W. Somerset Maugham bóc trần thế giới văn chương" class="a-title">W. Somerset Maugham bóc trần thế giới văn chương</a></h3>
                                     <span>
                                         Thứ Năm,
                                         06/11/2025</span>
@@ -149,11 +149,11 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                             </div>
                             <article class="item_blog_base first">
-                                <a class="thumb " href="/tac-gia-courtney-summers-sadie-la-tieng-noi-cua-nhung-co-gai-khong-con-duoc-lang-nghe" title="Tác giả Courtney Summers: Sadie là tiếng nói của những cô gái không còn được lắng nghe">
+                                <a class="thumb " href="#" title="Tác giả Courtney Summers: Sadie là tiếng nói của những cô gái không còn được lắng nghe">
                                     <img width="196" height="125" src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-34.png?v=1762394742617" data-src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-34.png?v=1762394742617" alt="Tác giả Courtney Summers: Sadie là tiếng nói của những cô gái không còn được lắng nghe" class="lazyload img-responsive loaded" data-was-processed="true">
                                 </a>
                                 <div class="content_blog">
-                                    <h3><a href="/tac-gia-courtney-summers-sadie-la-tieng-noi-cua-nhung-co-gai-khong-con-duoc-lang-nghe" title="Tác giả Courtney Summers: Sadie là tiếng nói của những cô gái không còn được lắng nghe" class="a-title">Tác giả Courtney Summers: Sadie là tiếng nói của những cô gái không còn được lắng nghe</a></h3>
+                                    <h3><a href="#" title="Tác giả Courtney Summers: Sadie là tiếng nói của những cô gái không còn được lắng nghe" class="a-title">Tác giả Courtney Summers: Sadie là tiếng nói của những cô gái không còn được lắng nghe</a></h3>
                                     <span>
                                         Thứ Năm,
                                         06/11/2025</span>
@@ -165,11 +165,11 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                             </div>
                             <article class="item_blog_base first">
-                                <a class="thumb " href="/van-chuong-cham-den-gioi-han-cuoi-cung-cua-su-song" title="Văn chương chạm đến giới hạn cuối cùng của sự sống">
+                                <a class="thumb " href="#" title="Văn chương chạm đến giới hạn cuối cùng của sự sống">
                                     <img width="196" height="125" src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-32.png?v=1762394416337" data-src="https://bizweb.dktcdn.net/100/363/455/articles/anh-web-32.png?v=1762394416337" alt="Văn chương chạm đến giới hạn cuối cùng của sự sống" class="lazyload img-responsive loaded" data-was-processed="true">
                                 </a>
                                 <div class="content_blog">
-                                    <h3><a href="/van-chuong-cham-den-gioi-han-cuoi-cung-cua-su-song" title="Văn chương chạm đến giới hạn cuối cùng của sự sống" class="a-title">Văn chương chạm đến giới hạn cuối cùng của sự sống</a></h3>
+                                    <h3><a href="#" title="Văn chương chạm đến giới hạn cuối cùng của sự sống" class="a-title">Văn chương chạm đến giới hạn cuối cùng của sự sống</a></h3>
                                     <span>
                                         Thứ Năm,
                                         06/11/2025</span>
@@ -270,7 +270,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     echo '<img width="199" height="199" src="' . htmlspecialchars($row['Anh']) . '" data-src="' . htmlspecialchars($row['Anh']) . '" alt="' . htmlspecialchars($row['TenSach']) . '" class="lazyload img-responsive center-block loaded" data-was-processed="true">';
                                     echo '</a>';
                                     echo '<div class="action-cart">';
-                                    echo '<button type="button" class="btn btn-lg btn-gray add_to_cart btn_buy buy-normal " title="Thêm vào giỏ">';
+                                    echo '<button type="button" class="btn btn-lg btn-gray add_to_cart btn_buy buy-normal " title="Thêm vào giỏ" data-masach="' . htmlspecialchars($row['MaSach']) . '" data-qty="1">';
                                     echo '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#addcarticon"></use></svg>';
                                     echo '</button>';
                                     echo '<button class="btn-buy btn-left btn-views  btn-buy-now-grid" title="Mua ngay">Mua ngay</button>';
@@ -324,7 +324,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                             Ngay từ cuốn sách đầu tiên, độc giả đã dành sự quan tâm và yêu mến cho một thương hiệu sách mới mẻ mang trong mình khát vọng góp phần tạo lập diện mạo mới cho xuất bản văn học tại Việt Nam.
                         </div>
-                        <a class="btn button-default" href="/gioi-thieu">Xem thêm</a>
+                        <a class="btn button-default" href="<?php echo BASE_URL; ?>/customer/module/booknews/introduction.php">Xem thêm</a>
                     </div>
                 </div>
             </div>

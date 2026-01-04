@@ -2,14 +2,14 @@
 session_start();
 require_once dirname(__DIR__, 2) . '/config/configpath.php';
 require_once dirname(__DIR__, 2) . '/connected.php';
-// Lấy danh sách thể loại
+//Lấy danh sách thể loại
 $theloai_sql = "SELECT * FROM the_loai ORDER BY TenTheLoai ASC";
 $theloai_result = $conn->query($theloai_sql);
 
 $page_title = "Tất cả sách mới";
 include dirname(__DIR__, 2) . '/layout/header.php';
 
-// Xử lý filter thể loại
+//Xử lý filter thể loại
 $selected_theloai = isset($_GET['theloai']) && is_array($_GET['theloai']) ? array_filter($_GET['theloai']) : [];
 
 $limit = 6; // books per page
@@ -62,7 +62,7 @@ $result_books = $conn->query($sql_books);
                                     echo '<img width="199" height="199" src="' . htmlspecialchars($row['Anh']) . '" data-src="' . htmlspecialchars($row['Anh']) . '" alt="' . htmlspecialchars($row['TenSach']) . '" class="lazyload img-responsive center-block loaded" data-was-processed="true">';
                                     echo '</a>';
                                     echo '<div class="action-cart">';
-                                    echo '<button type="button" class="btn btn-lg btn-gray add_to_cart btn_buy buy-normal " title="Thêm vào giỏ">';
+                                    echo '<button type="button" class="btn btn-lg btn-gray add_to_cart btn_buy buy-normal " title="Thêm vào giỏ" data-masach="' . htmlspecialchars($row['MaSach']) . '" data-qty="1">';
                                     echo '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#addcarticon"></use></svg>';
                                     echo '</button>';
                                     echo '<button class="btn-buy btn-left btn-views  btn-buy-now-grid" title="Mua ngay">Mua ngay</button>';
@@ -73,7 +73,6 @@ $result_books = $conn->query($sql_books);
                                     echo '<div class="price-box">';
                                     echo '<span class="price">' . number_format($row['DonGiaBan'], 0, ",", ".") . '₫</span>';
                                     if (!empty($row['DonGiaNhap']) && $row['DonGiaNhap'] > 0 && $row['DonGiaNhap'] < $row['DonGiaBan']) {
-                                        // Hiển thị giá nhập nếu cần
                                     }
                                     echo '</div>';
                                     echo '</div>';
@@ -90,10 +89,16 @@ $result_books = $conn->query($sql_books);
                     </div>
                 </div>
                 <?php if ($total_pages > 1): ?>
-                    <div class="pagination" style="margin-top: 30px; text-align: center;">
+                    <div class="pagination" style="margin-top: 30px; text-align: center; display: flex; justify-content: center; align-items: center; gap: 4px;">
                         <?php
-                        // Giữ lại filter khi chuyển trang
                         $query_params = $_GET;
+                        // Prev button
+                        if ($page > 1) {
+                            $query_params['page'] = $page - 1;
+                            $query = http_build_query($query_params);
+                            echo '<a href="?' . $query . '" style="margin:0 5px; font-weight:bold; font-size:18px;">&lt;</a>';
+                        }
+                        // Page numbers
                         for ($p = 1; $p <= $total_pages; $p++) {
                             $query_params['page'] = $p;
                             $query = http_build_query($query_params);
@@ -102,6 +107,12 @@ $result_books = $conn->query($sql_books);
                             } else {
                                 echo '<a href="?' . $query . '" style="margin:0 5px;">' . $p . '</a>';
                             }
+                        }
+                        // Next button
+                        if ($page < $total_pages) {
+                            $query_params['page'] = $page + 1;
+                            $query = http_build_query($query_params);
+                            echo '<a href="?' . $query . '" style="margin:0 5px; font-weight:bold; font-size:18px;">&gt;</a>';
                         }
                         ?>
                     </div>
@@ -169,19 +180,96 @@ $result_books = $conn->query($sql_books);
                     <form method="get" action="" id="filterForm">
                         <h4 class="title-module" style="margin-bottom: 15px;">Bộ lọc thể loại</h4>
                         <div style="max-height: 350px; overflow-y: auto;">
-                            <?php if ($theloai_result && $theloai_result->num_rows > 0): ?>
-                                <?php while ($tl = $theloai_result->fetch_assoc()): ?>
-                                    <div style="margin-bottom: 8px;">
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" name="theloai[]" value="<?php echo htmlspecialchars($tl['MaTheLoai']); ?>" <?php echo in_array($tl['MaTheLoai'], $selected_theloai) ? 'checked' : ''; ?>>
-                                            <span class="checkmark"></span>
-                                            <?php echo htmlspecialchars($tl['TenTheLoai']); ?>
-                                        </label>
-                                    </div>
-                                <?php endwhile; ?>
-                            <?php else: ?>
-                                <div>Không có thể loại.</div>
-                            <?php endif; ?>
+                            <?php
+                            // Phân loại thể loại theo Hư cấu và Phi hư cấu
+                            $hu_cau = [
+                                'TL001', // Văn học hiện đại
+                                'TL002', // Văn học kinh điển
+                                'TL003', // Văn học thiếu nhi
+                                'TL004', // Lãng mạn
+                                'TL005', // Trinh thám - Kinh dị
+                                'TL006', // Kỳ ảo
+                                'TL007', // Khoa học viễn tưởng
+                                'TL008', // Phiêu lưu ly kỳ
+                                'TL009', // Tản Văn
+                                'TL010', // Truyện tranh (graphic novel)
+                                'TL011', // Tranh sách (picture book)
+                                'TL025', // Thơ - kịch (nếu có)
+                            ];
+                            $phi_hu_cau = [
+                                'TL012', // Triết học
+                                'TL013', // Sử học
+                                'TL014', // Khoa học
+                                'TL015', // Kinh doanh
+                                'TL016', // Kinh tế chính trị
+                                'TL017', // Kỹ năng
+                                'TL018', // Nghệ thuật
+                                'TL019', // Tâm lý học
+                                'TL020', // Hồi ký
+                                'TL021', // Y học - Sức khỏe
+                                'TL022', // Tâm linh - Tôn giáo
+                                'TL023', // Kiến thức phổ thông
+                                'TL024', // Phong cách sống
+                            ];
+                            // Lấy lại danh sách thể loại (vì $theloai_result đã fetch_assoc hết)
+                            $theloai_sql2 = "SELECT * FROM the_loai ORDER BY TenTheLoai ASC";
+                            $theloai_result2 = $conn->query($theloai_sql2);
+                            $theloai_arr = [];
+                            if ($theloai_result2 && $theloai_result2->num_rows > 0) {
+                                while ($tl = $theloai_result2->fetch_assoc()) {
+                                    $theloai_arr[$tl['MaTheLoai']] = $tl['TenTheLoai'];
+                                }
+                            }
+                            ?>
+                            <div style="margin-bottom: 10px; color: green">
+                                <strong>Hư cấu</strong>
+                            </div>
+                            <?php
+                            foreach ($hu_cau as $ma) {
+                                if (isset($theloai_arr[$ma])) {
+                                    echo '<div style="margin-bottom: 8px;">';
+                                    echo '<label class="custom-checkbox">';
+                                    echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
+                                    echo '<span class="checkmark"></span>';
+                                    echo htmlspecialchars($theloai_arr[$ma]);
+                                    echo '</label>';
+                                    echo '</div>';
+                                }
+                            }
+                            ?>
+                            <div style="margin: 15px 0 10px 0; color: green;">
+                                <strong>Phi hư cấu</strong>
+                            </div>
+                            <?php
+                            foreach ($phi_hu_cau as $ma) {
+                                if (isset($theloai_arr[$ma])) {
+                                    echo '<div style="margin-bottom: 8px;">';
+                                    echo '<label class="custom-checkbox">';
+                                    echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
+                                    echo '<span class="checkmark"></span>';
+                                    echo htmlspecialchars($theloai_arr[$ma]);
+                                    echo '</label>';
+                                    echo '</div>';
+                                }
+                            }
+                            // Các thể loại khác (nếu có)
+                            $other = array_diff(array_keys($theloai_arr), $hu_cau, $phi_hu_cau);
+                            if (!empty($other)) {
+                                echo '<div style="margin: 15px 0 10px 0;"><strong>Khác</strong></div>';
+                                foreach ($other as $ma) {
+                                    echo '<div style="margin-bottom: 8px;">';
+                                    echo '<label class="custom-checkbox">';
+                                    echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
+                                    echo '<span class="checkmark"></span>';
+                                    echo htmlspecialchars($theloai_arr[$ma]);
+                                    echo '</label>';
+                                    echo '</div>';
+                                }
+                            }
+                            if (empty($theloai_arr)) {
+                                echo '<div>Không có thể loại.</div>';
+                            }
+                            ?>
                         </div>
                         <button type="submit" class="btn btn-primary" style="margin-top: 15px; width: 100%;">Lọc</button>
                     </form>

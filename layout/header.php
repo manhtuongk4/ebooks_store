@@ -1,3 +1,19 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$cartCountHeader = 0;
+if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $item) {
+        $qty = isset($item['quantity']) ? (int)$item['quantity'] : 1;
+        if ($qty < 1) {
+            $qty = 1;
+        }
+        $cartCountHeader += $qty;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -467,12 +483,12 @@
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="item_small">
                                             <li>
-                                                <a class="" href="/tin-nha-nam" title="Tin Nhã Nam">
+                                                <a class="" href="/tin-mo-te" title="Tin Mờ Tê">
                                                     Tin Mờ Tê
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="" href="/review-sach-cua-doc-gia" title="Review sách của độc giả">
+                                                <a class="" href="/EBOOKS_STORE/customer/module/booknews/readerbookreview.php" title="Review sách của độc giả">
                                                     Review sách của độc giả
                                                 </a>
                                             </li>
@@ -484,11 +500,6 @@
                                             <li>
                                                 <a class="" href="/bien-tap-vien-gioi-thieu" title="Biên tập viên giới thiệu">
                                                     Biên tập viên giới thiệu
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="" href="/review-sach-cua-doc-gia" title="Độc giả">
-                                                    Độc giả
                                                 </a>
                                             </li>
                                         </ul>
@@ -529,7 +540,7 @@
 
                                                         <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL011" title="Sách tranh (Picture book)">Sách tranh (Picture book)</a> </li>
 
-                                                        <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL012" title="Thơ - kịch">Thơ - kịch</a> </li>
+                                                        <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL025" title="Thơ - kịch">Thơ - kịch</a> </li>
 
                                                     </ul>
                                                 </li>
@@ -605,30 +616,7 @@
                                         </a>
                                     </li>
 
-                                    <!-- <li class="nav-item has-child  ">
-                                        <a class="a-img caret-down" href="/lien-he" title="Liên hệ">
-                                            Liên hệ
-                                        </a>
-                                        <i class="fa fa-angle-down"></i>
-                                        <ul class="item_small">
-                                            <li>
-                                                <a class="" href="/he-thong-hieu-sach" title="Hệ Thống Hiệu Sách">
-                                                    Hệ Thống Hiệu Sách
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="" href="/he-thong-cua-hang" title="Hệ Thống Phát Hành">
-                                                    Hệ Thống Phát Hành
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="" href="/gui-thu-cho-nha-nam" title="Gửi Thư Cho Nhã Nam">
-                                                    Gửi Thư Cho Mờ Tê VN
-                                                </a>
-                                            </li>
 
-                                        </ul>
-                                    </li> -->
                                 </ul>
                             </nav>
                         </div>
@@ -697,16 +685,88 @@
 
                         </div>
                     </div>
-                    <a class="cart-head" href="/cart" title="Giỏ hàng">
+                    <a class="cart-head" href="/EBOOKS_STORE/customer/module/order/ordercart.php" title="Giỏ hàng">
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#addcarticon"></use>
                         </svg>
-                        <span class="count_item count_item_pr">0</span>
+                        <span class="count_item count_item_pr"><?php echo (int)$cartCountHeader; ?></span>
                     </a>
                 </div>
             </div>
         </div>
     </header>
+    <!-- Chức năng giỏ hàng: cập nhật số lượng theo session và API -->
+    <script>
+        (function() {
+            var IS_LOGGED_IN = <?php echo (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) ? 'true' : 'false'; ?>;
+            var CART_API_URL = '<?php echo BASE_URL; ?>/customer/module/order/cart_api.php';
+
+            function updateHeaderCartCount(count) {
+                var el = document.querySelector('.cart-head .count_item_pr');
+                if (el) {
+                    el.textContent = count;
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Khởi tạo số lượng giỏ hàng khi tải trang theo session
+                updateHeaderCartCount(<?php echo (int)$cartCountHeader; ?>);
+
+                // Lắng nghe click trên các nút thêm vào giỏ ở index.php và books.php
+                document.body.addEventListener('click', function(e) {
+                    var btn = e.target.closest('.add_to_cart');
+                    if (!btn) return;
+
+                    // Bắt buộc đăng nhập trước khi thêm vào giỏ
+                    if (!IS_LOGGED_IN) {
+                        window.location.href = '<?php echo BASE_URL; ?>/login_register/login.php';
+                        return;
+                    }
+
+                    e.preventDefault();
+
+                    var maSach = btn.getAttribute('data-masach');
+                    var qtyAttr = btn.getAttribute('data-qty');
+                    var qty = qtyAttr ? parseInt(qtyAttr, 10) : 1;
+                    if (!maSach) {
+                        return;
+                    }
+                    if (isNaN(qty) || qty < 1) {
+                        qty = 1;
+                    }
+
+                    var params = new URLSearchParams();
+                    params.append('action', 'add');
+                    params.append('masach', maSach);
+                    params.append('qty', qty);
+
+                    fetch(CART_API_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                            },
+                            body: params.toString()
+                        })
+                        .then(function(res) {
+                            return res.json();
+                        })
+                        .then(function(data) {
+                            if (!data) return;
+                            if (data.require_login) {
+                                window.location.href = '<?php echo BASE_URL; ?>/login_register/login.php';
+                                return;
+                            }
+                            if (data.success && typeof data.cartCount !== 'undefined') {
+                                updateHeaderCartCount(data.cartCount);
+                            }
+                        })
+                        .catch(function(err) {
+                            console.error('Cart API error:', err);
+                        });
+                });
+            });
+        })();
+    </script>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="preload" href="//bizweb.dktcdn.net/100/363/455/themes/918830/assets/main.js?1765278128191" as="script">
