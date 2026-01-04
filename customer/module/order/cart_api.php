@@ -33,6 +33,14 @@ function get_cart_count()
 }
 
 if ($action === 'add') {
+    // Admin chỉ được xem, không được thao tác giỏ hàng
+    if (isset($_SESSION['admin_id'])) {
+        json_response([
+            'success' => false,
+            'message' => 'Tài khoản quản trị chỉ được xem, không thể đặt mua.'
+        ]);
+    }
+
     if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         json_response([
             'success' => false,
