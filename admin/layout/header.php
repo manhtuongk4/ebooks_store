@@ -151,9 +151,11 @@ if ($result_pending_order && mysqli_num_rows($result_pending_order) > 0) {
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="padding-top: 20px">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="#" style="margin-top: 10px; margin-left: 15px;">
-        <img src="<?php echo USER_URL . '/image/logo.png' ?>" alt="Ebooks Store" width="70" style="border-radius: 40px;">
-        <h2>QUẢN TRỊ BÁN SÁCH</h2>
+    <a href="/EBOOKS_STORE/admin/index.php" class="logo">
+        <img width="64" height="62" src="/EBOOKS_STORE/image/Logo.png" alt="Mờ Tê Bookstore" style="border-radius: 50%;">
+    </a>
+    <a class="navbar-brand ps-3" href="/EBOOKS_STORE/admin/index.php">
+        <h2 style="padding-left: 10px;">MỜ TÊ BOOKSTORE</h2>
     </a>
 
     <?php
@@ -161,6 +163,10 @@ if ($result_pending_order && mysqli_num_rows($result_pending_order) > 0) {
     ?>
 
     <div class="right-tools" style="margin-right: 8px;">
+        <a href="/EBOOKS_STORE/index.php" class="cgv-vip-banner" target="_blank" title="Xem trang khách hàng">
+            <i class="fas fa-external-link-alt"></i>
+            <span>Trang khách hàng</span>
+        </a>
         <span class="text-light small">Xin chào, <?php echo htmlspecialchars($admin_name); ?></span>
         <a class="admin-avatar-btn" href="#" title="Hồ sơ admin">
             <i class="fas fa-user"></i>
