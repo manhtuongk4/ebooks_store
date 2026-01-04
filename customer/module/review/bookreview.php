@@ -308,6 +308,7 @@ include dirname(__DIR__, 3) . '/layout/header.php';
                         <a href="<?php echo BASE_URL; ?>/customer/module/books.php" title="Gợi ý cho bạn">Gợi ý cho bạn</a>
                     </h2>
                 </div>
+
                 <div class="slide-book-new-wrap relative swiper-button-main">
                     <div class="swiper-container" style="cursor: grab; overflow: hidden;">
                         <div class="swiper-wrapper" style="display: flex; flex-wrap: nowrap; gap: 20px; justify-content: center;">

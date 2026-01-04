@@ -98,6 +98,7 @@ include dirname(__DIR__, 3) . '/layout/header.php';
                 </h2>
             </div>
 
+
             <?php if (empty($books)): ?>
                 <p>Hiện chưa có sách nào của tác giả này trong hệ thống.</p>
             <?php else: ?>
