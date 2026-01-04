@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $TenTacGia = trim($_POST['TenTacGia'] ?? '');
     $NgaySinh = trim($_POST['NgaySinh'] ?? '');
     $HinhAnh = trim($_POST['HinhAnh'] ?? '');
+    $MoTa = trim($_POST['MoTa'] ?? '');
 
     if ($TenTacGia === '') {
         $msg = 'Tên tác giả không được để trống!';
@@ -32,10 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $TenTacGia_sql = mysqli_real_escape_string($conn, $TenTacGia);
         $NgaySinh_sql = $NgaySinh !== '' ? mysqli_real_escape_string($conn, $NgaySinh) : null;
         $HinhAnh_sql = $HinhAnh !== '' ? mysqli_real_escape_string($conn, $HinhAnh) : null;
+        $MoTa_sql = $MoTa !== '' ? mysqli_real_escape_string($conn, $MoTa) : null;
 
-        $sql = "INSERT INTO tac_gia (MaTacGia, TenTacGia, NgaySinh, HinhAnh) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO tac_gia (MaTacGia, TenTacGia, NgaySinh, HinhAnh, MoTa) VALUES (?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, 'ssss', $MaTacGia, $TenTacGia_sql, $NgaySinh_sql, $HinhAnh_sql);
+        mysqli_stmt_bind_param($stmt, 'sssss', $MaTacGia, $TenTacGia_sql, $NgaySinh_sql, $HinhAnh_sql, $MoTa_sql);
 
         if (mysqli_stmt_execute($stmt)) {
             $msg = 'Thêm tác giả thành công!';
@@ -202,6 +204,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="img-preview" id="authorImgPreviewContainer" style="display:none;">
                         <img id="authorImgPreview" src="" alt="Ảnh tác giả xem trước">
                     </div>
+
+                    <label for="MoTa">Mô tả</label>
+                    <textarea id="MoTa" name="MoTa" rows="4"></textarea>
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm tác giả</button>

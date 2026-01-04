@@ -29,19 +29,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tenTacGia = trim($_POST['TenTacGia'] ?? '');
     $ngaySinh = trim($_POST['NgaySinh'] ?? '');
     $hinhAnh = trim($_POST['HinhAnh'] ?? '');
+    $moTa = trim($_POST['MoTa'] ?? '');
 
     if ($tenTacGia === '') {
         $error = 'Tên tác giả không được để trống!';
     } else {
-        $sql_update = "UPDATE tac_gia SET TenTacGia=?, NgaySinh=?, HinhAnh=? WHERE MaTacGia=?";
+        $sql_update = "UPDATE tac_gia SET TenTacGia=?, NgaySinh=?, HinhAnh=?, MoTa=? WHERE MaTacGia=?";
         $stmt = mysqli_prepare($conn, $sql_update);
-        mysqli_stmt_bind_param($stmt, 'ssss', $tenTacGia, $ngaySinh, $hinhAnh, $maTacGia);
+        mysqli_stmt_bind_param($stmt, 'sssss', $tenTacGia, $ngaySinh, $hinhAnh, $moTa, $maTacGia);
         if (mysqli_stmt_execute($stmt)) {
             $success = true;
             // Cập nhật lại dữ liệu mới nhất
             $author['TenTacGia'] = $tenTacGia;
             $author['NgaySinh'] = $ngaySinh;
             $author['HinhAnh'] = $hinhAnh;
+            $author['MoTa'] = $moTa;
         } else {
             $error = 'Có lỗi khi cập nhật dữ liệu!';
         }
@@ -102,7 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         input[type="text"],
-        input[type="date"] {
+        input[type="date"],
+        textarea {
             width: 100%;
             padding: 10px 12px;
             border-radius: 6px;
@@ -113,7 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         input[type="text"]:focus,
-        input[type="date"]:focus {
+        input[type="date"]:focus,
+        textarea:focus {
             outline: none;
             border-color: #2d7ff9;
         }
@@ -220,6 +224,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <img class="author-thumb" src="<?php echo htmlspecialchars($author['HinhAnh']); ?>" alt="Ảnh tác giả">
                         </div>
                     <?php endif; ?>
+                    <div class="form-group">
+                        <label for="MoTa">Mô tả</label>
+                        <textarea id="MoTa" name="MoTa" rows="4"><?php echo htmlspecialchars($author['MoTa'] ?? ''); ?></textarea>
+                    </div>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> Lưu thay đổi</button>
                         <a class="btn btn-secondary" href="author.php"><i class="fas fa-arrow-left"></i> Quay lại</a>
