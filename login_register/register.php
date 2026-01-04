@@ -54,41 +54,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <?php include dirname(__DIR__) . '/layout/header.php'; ?>
 <div class="container" style="max-width:500px;margin:40px auto;">
-    <h2 style="text-align:center;">Đăng ký tài khoản</h2>
-    <?php if ($error): ?>
-        <div style="color:red;text-align:center;margin-bottom:10px;"> <?= htmlspecialchars($error) ?> </div>
-    <?php elseif ($success): ?>
-        <div style="color:green;text-align:center;margin-bottom:10px;"> <?= htmlspecialchars($success) ?> </div>
-    <?php endif; ?>
-    <form method="post" action="">
-        <div style="margin-bottom:15px;">
-            <label for="name">Họ tên <span style="color:red">*</span></label>
-            <input type="text" id="name" name="name" class="form-control" required>
+    <div style="border:1px solid #2e7d32;border-radius:8px;padding:20px 24px;box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+        <h2 style="text-align:center;margin-bottom:15px;color:#2e7d32;">Đăng ký tài khoản</h2>
+        <?php if ($error): ?>
+            <div style="color:#d32f2f;text-align:center;margin-bottom:10px;"> <?= htmlspecialchars($error) ?> </div>
+        <?php elseif ($success): ?>
+            <div style="color:#2e7d32;text-align:center;margin-bottom:10px;"> <?= htmlspecialchars($success) ?> </div>
+        <?php endif; ?>
+        <form method="post" action="">
+            <div style="margin-bottom:15px;">
+                <label for="name">Họ tên <span style="color:red">*</span></label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="address">Địa chỉ</label>
+                <input type="text" id="address" name="address" class="form-control">
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="phone">Số điện thoại</label>
+                <input type="text" id="phone" name="phone" class="form-control">
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="email">Email <span style="color:red">*</span></label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="password">Mật khẩu <span style="color:red">*</span></label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="confirm">Xác nhận mật khẩu <span style="color:red">*</span></label>
+                <input type="password" id="confirm" name="confirm" class="form-control" required>
+            </div>
+            <button type="submit" class="btn" style="width:100%;background:#2e7d32;color:#fff;border:none;border-radius:4px;padding:8px 0;font-weight:500;">Đăng ký</button>
+        </form>
+        <div style="text-align:center;margin-top:10px;">
+            <a style="color:#2e7d32;">Bạn chưa có tài khoản?</a>
+            <a href="login.php" style="color:#27a5f7;"> Đăng nhập</a>
         </div>
-        <div style="margin-bottom:15px;">
-            <label for="address">Địa chỉ</label>
-            <input type="text" id="address" name="address" class="form-control">
-        </div>
-        <div style="margin-bottom:15px;">
-            <label for="phone">Số điện thoại</label>
-            <input type="text" id="phone" name="phone" class="form-control">
-        </div>
-        <div style="margin-bottom:15px;">
-            <label for="email">Email <span style="color:red">*</span></label>
-            <input type="email" id="email" name="email" class="form-control" required>
-        </div>
-        <div style="margin-bottom:15px;">
-            <label for="password">Mật khẩu <span style="color:red">*</span></label>
-            <input type="password" id="password" name="password" class="form-control" required>
-        </div>
-        <div style="margin-bottom:15px;">
-            <label for="confirm">Xác nhận mật khẩu <span style="color:red">*</span></label>
-            <input type="password" id="confirm" name="confirm" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-success" style="width:100%;">Đăng ký</button>
-    </form>
-    <div style="text-align:center;margin-top:10px;">
-        <a href="login.php">Đã có tài khoản? Đăng nhập</a>
     </div>
 </div>
 <?php include dirname(__DIR__) . '/layout/footer.php'; ?>

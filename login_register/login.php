@@ -63,24 +63,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <?php include dirname(__DIR__) . '/layout/header.php'; ?>
-<div class="container" style="max-width:400px;margin:40px auto;">
-    <h2 style="text-align:center;">Đăng nhập</h2>
-    <?php if ($error): ?>
-        <div style="color:red;text-align:center;margin-bottom:10px;"> <?= htmlspecialchars($error) ?> </div>
-    <?php endif; ?>
-    <form method="post" action="">
-        <div style="margin-bottom:15px;">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control" required autofocus>
+<div class="container" style="max-width:420px;margin:40px auto;">
+    <div style="border:1px solid #2e7d32;border-radius:8px;padding:20px 24px;box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+        <h2 style="text-align:center;margin-bottom:15px;color:#2e7d32;">Đăng nhập</h2>
+        <?php if ($error): ?>
+            <div style="color:#d32f2f;text-align:center;margin-bottom:10px;"> <?= htmlspecialchars($error) ?> </div>
+        <?php endif; ?>
+        <form method="post" action="">
+            <div style="margin-bottom:15px;">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required autofocus>
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div style="margin-bottom:10px; text-align:right; font-size:13px;">
+                <a href="forget_pass.php" style="color:#27a5f7; text-decoration:none;">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" class="btn" style="width:100%;background:#2e7d32;color:#fff;border:none;border-radius:4px;padding:8px 0;font-weight:500;">Đăng nhập</button>
+        </form>
+        <div style="text-align:center;margin-top:10px;">
+            <a style="color:#2e7d32;">Bạn chưa có tài khoản?</a>
+            <a href="register.php" style="color:#27a5f7;"> Đăng ký</a>
         </div>
-        <div style="margin-bottom:15px;">
-            <label for="password">Mật khẩu</label>
-            <input type="password" id="password" name="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-success" style="width:100%;">Đăng nhập</button>
-    </form>
-    <div style="text-align:center;margin-top:10px;">
-        <a href="register.php">Chưa có tài khoản? Đăng ký</a>
     </div>
 </div>
 <?php include dirname(__DIR__) . '/layout/footer.php'; ?>
