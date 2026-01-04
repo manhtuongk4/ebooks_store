@@ -121,32 +121,6 @@
     </script>
 
 
-    <script>
-        window.BizwebAnalytics = window.BizwebAnalytics || {};
-        window.BizwebAnalytics.meta = window.BizwebAnalytics.meta || {};
-        window.BizwebAnalytics.meta.currency = 'VND';
-        window.BizwebAnalytics.tracking_url = '/s';
-
-        var meta = {};
-
-        meta.article = {
-            "id": 3905793
-        };
-
-
-        meta.customer = {
-            "id": 32220953,
-            "first_name": "tường",
-            "last_name": "nguyễn",
-            "phone": "",
-            "email": "senpaigame123@gmail.com"
-        };
-
-        for (var attr in meta) {
-            window.BizwebAnalytics.meta[attr] = meta[attr];
-        }
-    </script>
-
 
     <script src="/dist/js/stats.min.js?v=96f2ff2"></script>
     <script async="" src="//bizweb.dktcdn.net/web/assets/lib/js/fp.v3.3.0.min.js"></script>
@@ -182,65 +156,10 @@
 
         document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
     </script>
-    <script async="" src="/dist/js/store_events_listener.min.js?v=1b795e9"></script>
 
 
-
-
-
-
-    <script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                        "@id": "https://nhanam.vn",
-                        "name": "Trang chủ"
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "item": {
-                        "@id": "https://nhanam.vn/review-sach-cua-doc-gia",
-                        "name": "Review sách của độc giả"
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "item": {
-                        "@id": "https://nhanam.vn/13-bai-hoc-lanh-dao-dat-gia-tu-phong-cach-nvidia-cua-jensen-huang",
-                        "name": "13 bài học lãnh đạo đắt giá từ “Phong cách NVIDIA” của Jensen Huang"
-                    }
-                }
-            ]
-        }
-    </script>
     <link rel="preload" as="image" href="//bizweb.dktcdn.net/thumb/large/100/363/455/themes/1048826/assets/img-home-slider1-mb.jpg?1766113296448" media="screen and (max-width: 480px)">
     <link rel="preload" as="image" href="//bizweb.dktcdn.net/100/363/455/themes/1048826/assets/img-home-slider1.jpg?1766113296448" media="screen and (min-width: 481px)">
-    <!-- Google tag (gtag.js) -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-11343976840"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'AW-11343976840');
-    </script>
-    <!-- Event snippet for Website traffic conversion page -->
-    <script>
-        gtag('event', 'conversion', {
-            'send_to': 'AW-11343976840/HOAfCIvY_ecYEIiznaEq'
-        });
-    </script>
-    <meta name="google-site-verification" content="oHntRCGqbA40kkKa4dxTWiMtAV2G2iNwENuVLK0MRAQ">
     <script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11343976840/?random=1766136310223&amp;cv=11&amp;fst=1766136310223&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45be5ca1v9169558977za200zb9194208837zd9194208837xec&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=103116026~103200004~104527906~104528501~104573694~104684208~104684211~105391252~115583767~115938465~115938468~116184927~116184929~116251938~116251940~116682877&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fnhanam.vn%2F13-bai-hoc-lanh-dao-dat-gia-tu-phong-cach-nvidia-cua-jensen-huang&amp;ref=https%3A%2F%2Fnhanam.vn%2F&amp;frm=0&amp;tiba=13%20b%C3%A0i%20h%E1%BB%8Dc%20l%C3%A3nh%20%C4%91%E1%BA%A1o%20%C4%91%E1%BA%AFt%20gi%C3%A1%20t%E1%BB%AB%20%E2%80%9CPhong%20c%C3%A1ch%20NVIDIA%E2%80%9D%20c%E1%BB%A7a%20Jensen%20Huang&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=1856605378.1765336121&amp;uaa=x86&amp;uab=64&amp;uafvl=Chromium%3B142.0.7444.228%7CGoogle%2520Chrome%3B142.0.7444.228%7CNot_A%2520Brand%3B99.0.0.0&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=19.0.0&amp;uaw=0&amp;data=event%3Dgtag.config&amp;rfmt=3&amp;fmt=4"></script>
     <style>
         .--savior-overlay-transform-reset {
@@ -492,17 +411,10 @@
 
 <body>
     <?php
+    include dirname(__DIR__, 3) . '/config/configpath.php';
     include dirname(__DIR__, 3) . '/layout/header.php';
     ?>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG4MCPTW"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <script src="//bizweb.dktcdn.net/100/363/455/themes/1048826/assets/jquery-plugin.js?1766113296448" type="text/javascript"></script>
-    <link rel="preload" href="//bizweb.dktcdn.net/100/363/455/themes/1048826/assets/swiper-plugin.js?1766113296448" as="script">
-    <script src="//bizweb.dktcdn.net/100/363/455/themes/1048826/assets/swiper-plugin.js?1766113296448"></script>
-    <link rel="preload" href="//bizweb.dktcdn.net/100/363/455/themes/1048826/assets/owl-carousel.js?1766113296448" as="script">
-    <script src="//bizweb.dktcdn.net/100/363/455/themes/1048826/assets/owl-carousel.js?1766113296448"></script>
+
     <main class="wrapperMain_content">
 
         <section class="blogpage clearfix">

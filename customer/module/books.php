@@ -11,18 +11,42 @@ include dirname(__DIR__, 2) . '/layout/header.php';
 
 //Xử lý filter thể loại
 $selected_theloai = isset($_GET['theloai']) && is_array($_GET['theloai']) ? array_filter($_GET['theloai']) : [];
+// Bộ lọc giá
+$price_range = isset($_GET['price_range']) ? $_GET['price_range'] : '';
 
 $limit = 6; // books per page
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-//Điều kiện lọc thể loại
-$where = '';
+//Điều kiện lọc thể loại + giá
+$conditions = [];
 if (!empty($selected_theloai)) {
     $escaped = array_map(function ($tl) use ($conn) {
         return "'" . $conn->real_escape_string($tl) . "'";
     }, $selected_theloai);
-    $where = "WHERE MaTheLoai IN (" . implode(",", $escaped) . ")";
+    $conditions[] = "MaTheLoai IN (" . implode(",", $escaped) . ")";
+}
+
+if ($price_range !== '') {
+    switch ($price_range) {
+        case '1':
+            $conditions[] = "DonGiaBan < 100000";
+            break;
+        case '2':
+            $conditions[] = "DonGiaBan BETWEEN 100000 AND 200000";
+            break;
+        case '3':
+            $conditions[] = "DonGiaBan BETWEEN 200000 AND 300000";
+            break;
+        case '4':
+            $conditions[] = "DonGiaBan > 300000";
+            break;
+    }
+}
+
+$where = '';
+if (!empty($conditions)) {
+    $where = 'WHERE ' . implode(' AND ', $conditions);
 }
 
 //Đếm tổng số sách sau lọc
@@ -53,23 +77,22 @@ $result_books = $conn->query($sql_books);
                             if ($result_books && $result_books->num_rows > 0) {
                                 $i = 1;
                                 while ($row = $result_books->fetch_assoc()) {
-                                    $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $row['TenSach']));
                                     echo '<div class="swiper-slide" style="width: 250px; margin-right: 10px; margin-bottom: 30px;">';
                                     echo '<div class="item_product_main">';
                                     echo '<form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" enctype="multipart/form-data">';
                                     echo '<div class="thumb">';
-                                    echo '<a class="image_thumb" href="/' . $slug . '" title="' . htmlspecialchars($row['TenSach']) . '">';
+                                    echo '<a class="image_thumb" href="' . BASE_URL . '/customer/module/review/bookreview.php?masach=' . urlencode($row['MaSach']) . '" title="' . htmlspecialchars($row['TenSach']) . '">';
                                     echo '<img width="199" height="199" src="' . htmlspecialchars($row['Anh']) . '" data-src="' . htmlspecialchars($row['Anh']) . '" alt="' . htmlspecialchars($row['TenSach']) . '" class="lazyload img-responsive center-block loaded" data-was-processed="true">';
                                     echo '</a>';
                                     echo '<div class="action-cart">';
                                     echo '<button type="button" class="btn btn-lg btn-gray add_to_cart btn_buy buy-normal " title="Thêm vào giỏ" data-masach="' . htmlspecialchars($row['MaSach']) . '" data-qty="1">';
                                     echo '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#addcarticon"></use></svg>';
                                     echo '</button>';
-                                    echo '<button class="btn-buy btn-left btn-views  btn-buy-now-grid" title="Mua ngay">Mua ngay</button>';
+                                    echo '<button type="button" class="btn-buy btn-left btn-views btn-buy-now-grid" title="Mua ngay" data-masach="' . htmlspecialchars($row['MaSach']) . '" data-qty="1">Mua ngay</button>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '<div class="info-product">';
-                                    echo '<h3 class="product-name"><a href="/' . $slug . '" title="' . htmlspecialchars($row['TenSach']) . '">' . htmlspecialchars($row['TenSach']) . '</a></h3>';
+                                    echo '<h3 class="product-name"><a href="' . BASE_URL . '/customer/module/review/bookreview.php?masach=' . urlencode($row['MaSach']) . '" title="' . htmlspecialchars($row['TenSach']) . '">' . htmlspecialchars($row['TenSach']) . '</a></h3>';
                                     echo '<div class="price-box">';
                                     echo '<span class="price">' . number_format($row['DonGiaBan'], 0, ",", ".") . '₫</span>';
                                     if (!empty($row['DonGiaNhap']) && $row['DonGiaNhap'] > 0 && $row['DonGiaNhap'] < $row['DonGiaBan']) {
@@ -121,6 +144,45 @@ $result_books = $conn->query($sql_books);
             <!-- Bộ lọc thể loại bên phải -->
             <div class="col-lg-3 col-md-4 col-12" style="min-width: 220px; max-width: 350px;">
                 <style>
+                    .filter-reset {
+                        font-size: 12px;
+                        color: #007bff;
+                        text-decoration: none;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 4px;
+                    }
+
+                    .filter-reset:hover {
+                        text-decoration: underline;
+                    }
+
+                    .filter-group-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        cursor: pointer;
+                        padding: 6px 0;
+                        font-weight: 600;
+                        color: #228b22;
+                    }
+
+                    .filter-group-header .toggle-icon {
+                        font-size: 12px;
+                        color: #666;
+                        transition: transform 0.2s ease;
+                    }
+
+                    .filter-group-header.is-open .toggle-icon {
+                        transform: rotate(90deg);
+                    }
+
+                    .filter-group-body {
+                        padding-left: 4px;
+                        margin-bottom: 6px;
+                        display: none;
+                    }
+
                     .custom-checkbox {
                         position: relative;
                         padding-left: 28px;
@@ -130,7 +192,7 @@ $result_books = $conn->query($sql_books);
                         font-size: 16px;
                     }
 
-                    .custom-checkbox input[type="checkbox"] {
+                    .custom-checkbox input {
                         position: absolute;
                         opacity: 0;
                         cursor: pointer;
@@ -176,9 +238,18 @@ $result_books = $conn->query($sql_books);
                         content: "";
                     }
                 </style>
-                <div class="filter-box" style="background: #f8f8f8; border-radius: 8px; padding: 20px; margin-left: 20px;">
+                <div class="filter-box" style="background: #f8f8f8; border-radius: 8px; padding: 20px; margin-left: 20px; position: sticky; top: 80px;">
                     <form method="get" action="" id="filterForm">
-                        <h4 class="title-module" style="margin-bottom: 15px;">Bộ lọc thể loại</h4>
+                        <h4 class="title-module" style="margin-bottom: 10px; display:flex; justify-content:space-between; align-items:center;">
+                            <span>Bộ lọc</span>
+                            <a href="<?php echo htmlspecialchars(strtok($_SERVER['REQUEST_URI'], '?')); ?>" class="filter-reset">
+                                <span style="display:inline-block; transform:rotate(0deg);">
+                                    &#8635;
+                                </span>
+                                <span>Làm mới</span>
+                            </a>
+                        </h4>
+                        <button type="submit" class="btn btn-primary" style="margin-bottom: 10px; width: 100%;">Lọc</button>
                         <div style="max-height: 350px; overflow-y: auto;">
                             <?php
                             // Phân loại thể loại theo Hư cấu và Phi hư cấu
@@ -220,59 +291,122 @@ $result_books = $conn->query($sql_books);
                                     $theloai_arr[$tl['MaTheLoai']] = $tl['TenTheLoai'];
                                 }
                             }
+                            $has_selected_hu_cau = count(array_intersect($selected_theloai, $hu_cau)) > 0;
+                            $has_selected_phi_hu_cau = count(array_intersect($selected_theloai, $phi_hu_cau)) > 0;
                             ?>
-                            <div style="margin-bottom: 10px; color: green">
-                                <strong>Hư cấu</strong>
+                            <div class="filter-group-header<?php echo $has_selected_hu_cau ? ' is-open' : ''; ?>">
+                                <span>Hư cấu</span>
+                                <span class="toggle-icon">›</span>
                             </div>
-                            <?php
-                            foreach ($hu_cau as $ma) {
-                                if (isset($theloai_arr[$ma])) {
-                                    echo '<div style="margin-bottom: 8px;">';
-                                    echo '<label class="custom-checkbox">';
-                                    echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
-                                    echo '<span class="checkmark"></span>';
-                                    echo htmlspecialchars($theloai_arr[$ma]);
-                                    echo '</label>';
-                                    echo '</div>';
+                            <div class="filter-group-body" data-group="hu_cau" style="<?php echo $has_selected_hu_cau ? 'display:block;' : ''; ?>">
+                                <?php
+                                foreach ($hu_cau as $ma) {
+                                    if (isset($theloai_arr[$ma])) {
+                                        echo '<div style="margin-bottom: 8px;">';
+                                        echo '<label class="custom-checkbox">';
+                                        echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
+                                        echo '<span class="checkmark"></span>';
+                                        echo htmlspecialchars($theloai_arr[$ma]);
+                                        echo '</label>';
+                                        echo '</div>';
+                                    }
                                 }
-                            }
-                            ?>
-                            <div style="margin: 15px 0 10px 0; color: green;">
-                                <strong>Phi hư cấu</strong>
+                                ?>
                             </div>
-                            <?php
-                            foreach ($phi_hu_cau as $ma) {
-                                if (isset($theloai_arr[$ma])) {
-                                    echo '<div style="margin-bottom: 8px;">';
-                                    echo '<label class="custom-checkbox">';
-                                    echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
-                                    echo '<span class="checkmark"></span>';
-                                    echo htmlspecialchars($theloai_arr[$ma]);
-                                    echo '</label>';
+                            <div class="filter-group-header<?php echo $has_selected_phi_hu_cau ? ' is-open' : ''; ?>" style="margin-top: 8px;">
+                                <span>Phi hư cấu</span>
+                                <span class="toggle-icon">›</span>
+                            </div>
+                            <div class="filter-group-body" data-group="phi_hu_cau" style="<?php echo $has_selected_phi_hu_cau ? 'display:block;' : ''; ?>">
+                                <?php
+                                foreach ($phi_hu_cau as $ma) {
+                                    if (isset($theloai_arr[$ma])) {
+                                        echo '<div style="margin-bottom: 8px;">';
+                                        echo '<label class="custom-checkbox">';
+                                        echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
+                                        echo '<span class="checkmark"></span>';
+                                        echo htmlspecialchars($theloai_arr[$ma]);
+                                        echo '</label>';
+                                        echo '</div>';
+                                    }
+                                }
+                                // Các thể loại khác (nếu có)
+                                $other = array_diff(array_keys($theloai_arr), $hu_cau, $phi_hu_cau);
+                                $has_selected_other = count(array_intersect($selected_theloai, $other)) > 0;
+                                if (!empty($other)) {
+                                    echo '<div class="filter-group-header' . ($has_selected_other ? ' is-open' : '') . '" style="margin-top: 8px;">';
+                                    echo '<span>Khác</span><span class="toggle-icon">›</span>';
+                                    echo '</div>';
+                                    echo '<div class="filter-group-body" data-group="other" style="' . ($has_selected_other ? 'display:block;' : '') . '">';
+                                    foreach ($other as $ma) {
+                                        echo '<div style="margin-bottom: 8px;">';
+                                        echo '<label class="custom-checkbox">';
+                                        echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
+                                        echo '<span class="checkmark"></span>';
+                                        echo htmlspecialchars($theloai_arr[$ma]);
+                                        echo '</label>';
+                                        echo '</div>';
+                                    }
                                     echo '</div>';
                                 }
-                            }
-                            // Các thể loại khác (nếu có)
-                            $other = array_diff(array_keys($theloai_arr), $hu_cau, $phi_hu_cau);
-                            if (!empty($other)) {
-                                echo '<div style="margin: 15px 0 10px 0;"><strong>Khác</strong></div>';
-                                foreach ($other as $ma) {
-                                    echo '<div style="margin-bottom: 8px;">';
-                                    echo '<label class="custom-checkbox">';
-                                    echo '<input type="checkbox" name="theloai[]" value="' . htmlspecialchars($ma) . '" ' . (in_array($ma, $selected_theloai) ? 'checked' : '') . '>';
-                                    echo '<span class="checkmark"></span>';
-                                    echo htmlspecialchars($theloai_arr[$ma]);
-                                    echo '</label>';
-                                    echo '</div>';
+                                if (empty($theloai_arr)) {
+                                    echo '<div>Không có thể loại.</div>';
                                 }
-                            }
-                            if (empty($theloai_arr)) {
-                                echo '<div>Không có thể loại.</div>';
-                            }
-                            ?>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="margin-top: 15px; width: 100%;">Lọc</button>
+                                ?>
+                            </div>
+                            <div style="margin:20px 0 10px 0; border-top:1px solid #e0e0e0; padding-top:12px;">
+                                <div style="margin-bottom:10px; font-weight:600; font-size:14px;">Bộ lọc giá</div>
+                                <div style="margin-bottom:8px;">
+                                    <label class="custom-checkbox" style="font-size:14px;">
+                                        <input type="radio" name="price_range" value="" <?php echo $price_range === '' ? 'checked' : ''; ?>>
+                                        <span class="checkmark"></span>
+                                        Tất cả mức giá
+                                    </label>
+                                </div>
+                                <div style="margin-bottom:8px;">
+                                    <label class="custom-checkbox" style="font-size:14px;">
+                                        <input type="radio" name="price_range" value="1" <?php echo $price_range === '1' ? 'checked' : ''; ?>>
+                                        <span class="checkmark"></span>
+                                        Dưới 100.000₫
+                                    </label>
+                                </div>
+                                <div style="margin-bottom:8px;">
+                                    <label class="custom-checkbox" style="font-size:14px;">
+                                        <input type="radio" name="price_range" value="2" <?php echo $price_range === '2' ? 'checked' : ''; ?>>
+                                        <span class="checkmark"></span>
+                                        100.000₫ - 200.000₫
+                                    </label>
+                                </div>
+                                <div style="margin-bottom:8px;">
+                                    <label class="custom-checkbox" style="font-size:14px;">
+                                        <input type="radio" name="price_range" value="3" <?php echo $price_range === '3' ? 'checked' : ''; ?>>
+                                        <span class="checkmark"></span>
+                                        200.000₫ - 300.000₫
+                                    </label>
+                                </div>
+                                <div style="margin-bottom:8px;">
+                                    <label class="custom-checkbox" style="font-size:14px;">
+                                        <input type="radio" name="price_range" value="4" <?php echo $price_range === '4' ? 'checked' : ''; ?>>
+                                        <span class="checkmark"></span>
+                                        Trên 300.000₫
+                                    </label>
+                                </div>
+                            </div>
                     </form>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var headers = document.querySelectorAll('.filter-box .filter-group-header');
+                            headers.forEach(function(header) {
+                                header.addEventListener('click', function() {
+                                    var body = header.nextElementSibling;
+                                    if (!body || !body.classList.contains('filter-group-body')) return;
+                                    var isOpen = body.style.display === 'block';
+                                    body.style.display = isOpen ? 'none' : 'block';
+                                    header.classList.toggle('is-open', !isOpen);
+                                });
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>

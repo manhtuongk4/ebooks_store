@@ -12,40 +12,73 @@ if ($maSach === '') {
     exit;
 }
 
-// Xử lý gửi đánh giá sách
+// Trạng thái đăng nhập
+$isCustomerLoggedIn = isset($_SESSION['logged_in'], $_SESSION['user_id'])
+    && $_SESSION['logged_in'] === true
+    && !isset($_SESSION['admin_id']);
+$isAdminLoggedIn = isset($_SESSION['logged_in'], $_SESSION['admin_id'])
+    && $_SESSION['logged_in'] === true;
+
+// Xử lý gửi đánh giá sách / trả lời đánh giá
 $review_error = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'submit_review') {
-    // Chỉ cho phép khách hàng (không phải admin) gửi đánh giá
-    $isCustomerLoggedIn = isset($_SESSION['logged_in'], $_SESSION['user_id'])
-        && $_SESSION['logged_in'] === true
-        && !isset($_SESSION['admin_id']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
 
-    if (!$isCustomerLoggedIn) {
-        $review_error = 'Bạn cần đăng nhập bằng tài khoản khách hàng để đánh giá.';
-    } else {
-        $rating = isset($_POST['rating']) ? (int)$_POST['rating'] : 0;
-        $content = trim($_POST['review_content'] ?? '');
-
-        if ($rating < 1 || $rating > 5) {
-            $review_error = 'Vui lòng chọn số sao từ 1 đến 5.';
+    if ($action === 'submit_review') {
+        // Chỉ cho phép khách hàng (không phải admin) gửi đánh giá
+        if (!$isCustomerLoggedIn) {
+            $review_error = 'Bạn cần đăng nhập bằng tài khoản khách hàng để đánh giá.';
         } else {
-            $maKH = $_SESSION['user_id'];
+            $rating = isset($_POST['rating']) ? (int)$_POST['rating'] : 0;
+            $content = trim($_POST['review_content'] ?? '');
 
-            $stmtReview = $conn->prepare(
-                "INSERT INTO danh_gia_binh_luan (MaSach, MaKH, SoSao, NoiDung, NgayDang)
-                 VALUES (?, ?, ?, ?, NOW())"
-            );
-
-            if ($stmtReview) {
-                $stmtReview->bind_param('ssis', $maSach, $maKH, $rating, $content);
-                $stmtReview->execute();
-                $stmtReview->close();
-
-                // Chống gửi lại form khi F5
-                header('Location: ' . BASE_URL . '/customer/module/review/bookreview.php?masach=' . urlencode($maSach) . '#reviews');
-                exit;
+            if ($rating < 1 || $rating > 5) {
+                $review_error = 'Vui lòng chọn số sao từ 1 đến 5.';
             } else {
-                $review_error = 'Không thể lưu đánh giá lúc này. Vui lòng thử lại sau.';
+                $maKH = $_SESSION['user_id'];
+
+                $stmtReview = $conn->prepare(
+                    "INSERT INTO danh_gia_binh_luan (MaSach, MaKH, SoSao, NoiDung, NgayDang)
+                     VALUES (?, ?, ?, ?, NOW())"
+                );
+
+                if ($stmtReview) {
+                    $stmtReview->bind_param('ssis', $maSach, $maKH, $rating, $content);
+                    $stmtReview->execute();
+                    $stmtReview->close();
+
+                    // Chống gửi lại form khi F5
+                    header('Location: ' . BASE_URL . '/customer/module/review/bookreview.php?masach=' . urlencode($maSach) . '#reviews');
+                    exit;
+                } else {
+                    $review_error = 'Không thể lưu đánh giá lúc này. Vui lòng thử lại sau.';
+                }
+            }
+        }
+    } elseif ($action === 'reply_review') {
+        // Chỉ cho phép admin trả lời bình luận của khách hàng
+        if ($isAdminLoggedIn) {
+            $replyContent = trim($_POST['reply_content'] ?? '');
+            $replyMaKH = isset($_POST['reply_makh']) ? trim($_POST['reply_makh']) : '';
+            $replyNgayDang = isset($_POST['reply_ngaydang']) ? trim($_POST['reply_ngaydang']) : '';
+
+            if ($replyContent !== '' && $replyMaKH !== '' && $replyNgayDang !== '') {
+                $stmtReply = $conn->prepare(
+                    "UPDATE danh_gia_binh_luan
+                     SET TraLoi = ?, NgayTraLoi = NOW()
+                     WHERE MaSach = ? AND MaKH = ? AND NgayDang = ?"
+                );
+
+                if ($stmtReply) {
+                    $stmtReply->bind_param('ssss', $replyContent, $maSach, $replyMaKH, $replyNgayDang);
+                    $stmtReply->execute();
+                    $stmtReply->close();
+
+                    header('Location: ' . BASE_URL . '/customer/module/review/bookreview.php?masach=' . urlencode($maSach) . '#reviews');
+                    exit;
+                } else {
+                    $review_error = 'Không thể lưu trả lời lúc này. Vui lòng thử lại sau.';
+                }
             }
         }
     }
@@ -112,17 +145,17 @@ if ($stmtTrans) {
 
 // Lấy email khách hàng đang đăng nhập (nếu có)
 $userEmail = null;
-$isCustomerLoggedIn = isset($_SESSION['logged_in'], $_SESSION['user_id'])
-    && $_SESSION['logged_in'] === true
-    && !isset($_SESSION['admin_id']);
 if ($isCustomerLoggedIn && isset($_SESSION['email'])) {
     $userEmail = $_SESSION['email'];
 }
 
 // Lấy danh sách đánh giá cho sách hiện tại
 $reviews = [];
+$totalRatingSum = 0;
+$totalRatingCount = 0;
+
 $stmtReviews = $conn->prepare(
-    "SELECT dg.SoSao, dg.NoiDung, dg.NgayDang, kh.Email
+    "SELECT dg.SoSao, dg.NoiDung, dg.NgayDang, dg.MaKH, dg.TraLoi, dg.NgayTraLoi, kh.Email
      FROM danh_gia_binh_luan dg
      JOIN khach_hang kh ON dg.MaKH = kh.MaKH
      WHERE dg.MaSach = ?
@@ -134,9 +167,15 @@ if ($stmtReviews) {
     $rsReviews = $stmtReviews->get_result();
     while ($row = $rsReviews->fetch_assoc()) {
         $reviews[] = $row;
+        if (isset($row['SoSao'])) {
+            $totalRatingSum += (int)$row['SoSao'];
+            $totalRatingCount++;
+        }
     }
     $stmtReviews->close();
 }
+
+$avgRating = $totalRatingCount > 0 ? round($totalRatingSum / $totalRatingCount, 1) : 0;
 
 $page_title = htmlspecialchars($book['TenSach']);
 
@@ -224,7 +263,24 @@ include dirname(__DIR__, 3) . '/layout/header.php';
                 <?php endif; ?>
 
                 <div class="product-reviews" id="reviews" style="margin-top:25px; border:1px solid #ddd; padding:15px; border-radius:4px; background:#fff;">
-                    <h3 style="font-size:20px; margin-bottom:12px; color:green;">Đánh giá sách</h3>
+                    <h3 style="font-size:20px; margin-bottom:8px; color:green;">Đánh giá sách</h3>
+
+                    <div style="margin-bottom:10px; font-size:14px; color:#555;">
+                        <?php if ($totalRatingCount > 0): ?>
+                            <span><strong><?php echo htmlspecialchars($avgRating); ?></strong>/5 sao</span>
+                            <span style="margin-left:10px; color:#ffc107;">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <?php echo $i <= floor($avgRating) ? '★' : '☆'; ?>
+                                <?php endfor; ?>
+                            </span>
+                            <span style="margin-left:10px;">
+                                (<?php echo (int)$totalRatingCount; ?> lượt đánh giá,
+                                tổng <?php echo (int)$totalRatingSum; ?> sao)
+                            </span>
+                        <?php else: ?>
+                            <span>Chưa có đánh giá nào.</span>
+                        <?php endif; ?>
+                    </div>
 
                     <div style="margin-bottom:10px;">
                         <strong>Email của bạn:</strong>
@@ -292,6 +348,33 @@ include dirname(__DIR__, 3) . '/layout/header.php';
                                         <div style="margin-top:2px; font-size:12px; color:#888;">
                                             <?php echo htmlspecialchars($rev['NgayDang']); ?>
                                         </div>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($rev['TraLoi'])): ?>
+                                        <div style="margin-top:6px; padding:8px 10px; background:#f9f9f9; border-left:3px solid #228B22; font-size:13px;">
+                                            <strong>Phản hồi từ cửa hàng:</strong>
+                                            <div style="margin-top:4px;">
+                                                <?php echo nl2br(htmlspecialchars($rev['TraLoi'])); ?>
+                                            </div>
+                                            <?php if (!empty($rev['NgayTraLoi'])): ?>
+                                                <div style="margin-top:2px; font-size:11px; color:#999;">
+                                                    <?php echo htmlspecialchars($rev['NgayTraLoi']); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ($isAdminLoggedIn): ?>
+                                        <form method="post" action="<?php echo BASE_URL; ?>/customer/module/review/bookreview.php?masach=<?php echo urlencode($book['MaSach']); ?>#reviews" style="margin-top:6px;">
+                                            <input type="hidden" name="action" value="reply_review">
+                                            <input type="hidden" name="reply_makh" value="<?php echo htmlspecialchars($rev['MaKH']); ?>">
+                                            <input type="hidden" name="reply_ngaydang" value="<?php echo htmlspecialchars($rev['NgayDang']); ?>">
+                                            <div style="margin-bottom:4px;">
+                                                <label style="font-size:13px; font-weight:bold;">Trả lời bình luận:</label>
+                                                <textarea name="reply_content" rows="2" style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;"><?php echo htmlspecialchars($rev['TraLoi'] ?? ''); ?></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" style="padding:4px 10px; font-size:12px; background:#228B22; border:none; border-radius:4px; color:#fff; cursor:pointer;">Lưu trả lời</button>
+                                        </form>
                                     <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
