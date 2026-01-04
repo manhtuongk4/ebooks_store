@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    // session_start();
 }
 
 $cartCountHeader = 0;
@@ -79,10 +79,101 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
             --hover: #228b22;
             --menu: #ff8ea6;
         }
+
+        /* Gợi ý tìm kiếm header */
+        .search-bar {
+            position: relative;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 6px;
+            max-height: 320px;
+            overflow-y: auto;
+            z-index: 9999;
+            padding: 6px 0;
+            display: none;
+        }
+
+        .search-suggestions-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .search-suggestions-item:hover {
+            background: #f7f7f7;
+        }
+
+        .search-suggestions-thumb {
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .search-suggestions-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .search-suggestions-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-suggestions-title {
+            font-family: var(--font-base-medium);
+            font-size: 13px;
+            color: #222;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 2px;
+        }
+
+        .search-suggestions-price {
+            font-family: var(--font-base-bold);
+            font-size: 13px;
+            color: var(--price);
+        }
+
+        .search-suggestions-empty {
+            padding: 8px 10px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* Thu hẹp khung chứa các thể loại (mega menu) */
+        .header .nav-horizontal .nav-item.has-mega {
+            position: relative;
+        }
+
+        .header .nav-horizontal .nav-item.has-mega .mega-content {
+            max-width: 720px;
+            width: 720px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     </style>
     <link href="//bizweb.dktcdn.net/100/363/455/themes/918830/assets/plugin-css.scss.css?1765278128191" rel="stylesheet" type="text/css" media="all">
     <link rel="preload" as="style" href="//bizweb.dktcdn.net/100/363/455/themes/918830/assets/swiper-style.scss.css?1765278128191">
     <link href="//bizweb.dktcdn.net/100/363/455/themes/918830/assets/swiper-style.scss.css?1765278128191" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Swiper JS cho các slider (blog, tác giả, sách mới) -->
+    <script src="https://unpkg.com/swiper@5.4.5/js/swiper.min.js"></script>
 
     <link rel="preload" as="style" href="//bizweb.dktcdn.net/100/363/455/themes/918830/assets/main.scss.css?1765278128191">
     <link rel="preload" as="style" href="//bizweb.dktcdn.net/100/363/455/themes/918830/assets/header.scss.css?1765278128191">
@@ -437,7 +528,6 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                         <img width="64" height="62" src="/EBOOKS_STORE/image/Logo.png" alt="Mờ Tê Bookstore">
                     </a>
 
-
                 </div>
                 <div class="col-9 col-md-3 col-xl-7 col-lg-6">
                     <div class="child-header header_nav_main">
@@ -447,12 +537,24 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#accicon"></use>
                                 </svg>
                                 <div class="d-flex">
+                                    <?php
+                                    $isCustomerLoggedIn = isset($_SESSION['logged_in'], $_SESSION['user_id'])
+                                        && $_SESSION['logged_in'] === true
+                                        && !isset($_SESSION['admin_id']);
+                                    $isAdminLoggedIn = isset($_SESSION['logged_in'], $_SESSION['admin_id'])
+                                        && $_SESSION['logged_in'] === true;
+                                    ?>
 
-                                    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                                    <?php if ($isCustomerLoggedIn): ?>
                                         <a href="/EBOOKS_STORE/customer/profile/profile.php" style="padding: 8px 12px; text-decoration:none; color:inherit;">
                                             Xin chào, <?php echo htmlspecialchars($_SESSION['username']); ?>
                                         </a>
                                         <a href="/EBOOKS_STORE/login_register/logout.php">Đăng xuất</a>
+                                    <?php elseif ($isAdminLoggedIn): ?>
+                                        <a href="/EBOOKS_STORE/admin/index.php" style="padding: 8px 12px; text-decoration:none; color:inherit;">
+                                            Xin chào, <span style="color:#ff4d4d; font-weight:bold;"><?php echo htmlspecialchars($_SESSION['admin_name'] ?? 'Admin'); ?></span>
+                                        </a>
+                                        <a href="/EBOOKS_STORE/admin/logout.php">Đăng xuất</a>
                                     <?php else: ?>
                                         <a href="/EBOOKS_STORE/login_register/login.php">Đăng nhập</a>
                                         <a href="/EBOOKS_STORE/login_register/register.php">Đăng ký</a>
@@ -467,7 +569,7 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
 
                             <nav class="nav-horizontal">
                                 <ul class="item_big">
-                                    <li class="nav-item has-child active ">
+                                    <li class="nav-item has-child <?php echo ($_SERVER['SCRIPT_NAME'] ?? '') === '/EBOOKS_STORE/index.php' ? 'active' : ''; ?>">
                                         <a class="a-img caret-down" href="/EBOOKS_STORE/index.php" title="Trang chủ">
                                             Trang chủ
                                         </a>
@@ -536,9 +638,9 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
 
                                                         <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL009" title="Tản văn">Tản văn</a> </li>
 
-                                                        <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL010" title="Truyện tranh (graphic novel)">Truyện tranh (graphic novel)</a> </li>
+                                                        <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL010" title="Truyện tranh">Truyện tranh</a> </li>
 
-                                                        <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL011" title="Sách tranh (Picture book)">Sách tranh (Picture book)</a> </li>
+                                                        <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL011" title="Sách tranh">Sách tranh</a> </li>
 
                                                         <li class="level2"><a href="/EBOOKS_STORE/customer/module/books.php?theloai[]=TL025" title="Thơ - kịch">Thơ - kịch</a> </li>
 
@@ -580,33 +682,6 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
 
                                                     </ul>
                                                 </li>
-
-
-
-
-
-
-                                                <li class="level1 parent item">
-                                                    <h4><a href="/phan-loai-khac" title="Phân loại khác">Phân loại khác</a><span class="icon fa fa-angle-down"></span></h4>
-                                                    <ul class="level1">
-
-                                                        <li class="level2"><a href="/sach-ban-chay" title="Sách bán chạy">Sách bán chạy</a> </li>
-
-                                                        <li class="level2"><a href="/sach-moi-xuat-ban" title="Sách mới xuất bản">Sách mới xuất bản</a> </li>
-
-                                                        <li class="level2"><a href="/sach-sap-xuat-ban" title="Sách sắp xuất bản">Sách sắp xuất bản</a> </li>
-
-                                                        <li class="level2"><a href="/sach-duoc-giai-thuong" title="Sách được giải thưởng">Sách được giải thưởng</a> </li>
-
-                                                        <li class="level2"><a href="/sach-chu-de-dong-duong" title="Nghiên cứu Việt Nam">Nghiên cứu Việt Nam</a> </li>
-
-                                                        <li class="level2"><a href="/tac-gia-viet-nam" title="Tác giả Việt Nam">Tác giả Việt Nam</a> </li>
-
-                                                        <li class="level2"><a href="/ban-dac-biet" title="Bản đặc biệt">Bản đặc biệt</a> </li>
-                                                    </ul>
-                                                </li>
-
-
                                             </ul>
                                         </div>
                                     </li>
@@ -658,14 +733,14 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
                         </svg>
                     </div>
-                    <form action="/search" class="input-group search-bar" role="search">
-                        <input type="text" aria-label="Tìm sản phẩm" name="query" value="" autocomplete="off" placeholder="Tìm kiếm..." class="search-auto input-group-field auto-search" required="">
-                        <input type="hidden" name="type" value="product">
+                    <form action="<?php echo BASE_URL; ?>/customer/module/search.php" class="input-group search-bar" role="search" method="get">
+                        <input type="text" aria-label="Tìm sản phẩm" name="q" value="" autocomplete="off" placeholder="Tìm kiếm..." class="search-auto input-group-field auto-search" required="">
                         <button class="btn search-button" aria-label="Justify">
                             <svg class="icon">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
                             </svg>
                         </button>
+                        <div id="header-search-suggestions" class="search-suggestions"></div>
                     </form>
                     <div class="user-header">
                         <svg class="icon">
@@ -673,11 +748,16 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                         </svg>
                         <div class="account-header">
 
-                            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                            <?php if ($isCustomerLoggedIn): ?>
                                 <a href="/EBOOKS_STORE/customer/profile/profile.php" style="padding: 8px 12px; text-decoration:none; color:inherit;">
                                     Xin chào, <?php echo htmlspecialchars($_SESSION['username']); ?>
                                 </a>
                                 <a href="/EBOOKS_STORE/login_register/logout.php">Đăng xuất</a>
+                            <?php elseif ($isAdminLoggedIn): ?>
+                                <a href="/EBOOKS_STORE/admin/index.php" style="padding: 8px 12px; text-decoration:none; color:inherit;">
+                                    Xin chào, <span style="color:#ff4d4d; font-weight:bold;"><?php echo htmlspecialchars($_SESSION['admin_name'] ?? 'Admin'); ?></span>
+                                </a>
+                                <a href="/EBOOKS_STORE/admin/logout.php">Đăng xuất</a>
                             <?php else: ?>
                                 <a href="/EBOOKS_STORE/login_register/login.php">Đăng nhập</a>
                                 <a href="/EBOOKS_STORE/login_register/register.php">Đăng ký</a>
@@ -699,7 +779,10 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
     <script>
         (function() {
             var IS_LOGGED_IN = <?php echo (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) ? 'true' : 'false'; ?>;
+            var IS_ADMIN = <?php echo isset($_SESSION['admin_id']) ? 'true' : 'false'; ?>;
             var CART_API_URL = '<?php echo BASE_URL; ?>/customer/module/order/cart_api.php';
+            var SEARCH_API_URL = '<?php echo BASE_URL; ?>/customer/module/search.php';
+            var CHECKOUT_URL = '<?php echo BASE_URL; ?>/customer/module/order/order_details.php';
 
             function updateHeaderCartCount(count) {
                 var el = document.querySelector('.cart-head .count_item_pr');
@@ -720,6 +803,12 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                     // Bắt buộc đăng nhập trước khi thêm vào giỏ
                     if (!IS_LOGGED_IN) {
                         window.location.href = '<?php echo BASE_URL; ?>/login_register/login.php';
+                        return;
+                    }
+
+                    // Tài khoản admin không được phép mua
+                    if (IS_ADMIN) {
+                        alert('Tài khoản quản trị chỉ được xem, không thể đặt mua.');
                         return;
                     }
 
@@ -764,6 +853,100 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                             console.error('Cart API error:', err);
                         });
                 });
+
+                // Lắng nghe click nút "Mua ngay" để chuyển thẳng tới trang thanh toán, không thêm vào giỏ
+                document.body.addEventListener('click', function(e) {
+                    var btnBuyNow = e.target.closest('.btn-buy-now-grid');
+                    if (!btnBuyNow) return;
+
+                    if (!IS_LOGGED_IN) {
+                        window.location.href = '<?php echo BASE_URL; ?>/login_register/login.php';
+                        return;
+                    }
+
+                    if (IS_ADMIN) {
+                        alert('Tài khoản quản trị chỉ được xem, không thể đặt mua.');
+                        return;
+                    }
+
+                    e.preventDefault();
+
+                    var maSach = btnBuyNow.getAttribute('data-masach');
+                    var qtyAttr = btnBuyNow.getAttribute('data-qty');
+                    var qty = qtyAttr ? parseInt(qtyAttr, 10) : 1;
+                    if (!maSach) return;
+                    if (isNaN(qty) || qty < 1) {
+                        qty = 1;
+                    }
+
+                    var url = CHECKOUT_URL + '?buy_now=1&masach=' + encodeURIComponent(maSach) + '&qty=' + encodeURIComponent(qty);
+                    window.location.href = url;
+                });
+
+                // Gợi ý tìm kiếm sản phẩm theo thời gian thực
+                var searchInput = document.querySelector('.search-bar .auto-search');
+                var suggestBox = document.getElementById('header-search-suggestions');
+                var searchTimer = null;
+                var lastKeyword = '';
+
+                function hideSuggestions() {
+                    if (suggestBox) {
+                        suggestBox.style.display = 'none';
+                        suggestBox.innerHTML = '';
+                    }
+                }
+
+                if (searchInput && suggestBox && window.fetch) {
+                    searchInput.addEventListener('input', function() {
+                        var keyword = this.value.trim();
+                        if (keyword.length < 1) {
+                            lastKeyword = '';
+                            hideSuggestions();
+                            return;
+                        }
+
+                        if (keyword === lastKeyword) {
+                            return;
+                        }
+                        lastKeyword = keyword;
+
+                        if (searchTimer) {
+                            clearTimeout(searchTimer);
+                        }
+
+                        searchTimer = setTimeout(function() {
+                            var url = SEARCH_API_URL + '?ajax=1&q=' + encodeURIComponent(keyword);
+                            fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    }
+                                })
+                                .then(function(res) {
+                                    return res.text();
+                                })
+                                .then(function(html) {
+                                    if (!html || html.trim() === '') {
+                                        hideSuggestions();
+                                        return;
+                                    }
+                                    suggestBox.innerHTML = html;
+                                    suggestBox.style.display = 'block';
+                                })
+                                .catch(function(err) {
+                                    console.error('Search suggest error:', err);
+                                    hideSuggestions();
+                                });
+                        }, 250);
+                    });
+
+                    // Ẩn gợi ý khi click ra ngoài
+                    document.addEventListener('click', function(e) {
+                        if (!suggestBox.contains(e.target) && e.target !== searchInput) {
+                            hideSuggestions();
+                        }
+                    });
+                }
             });
         })();
     </script>

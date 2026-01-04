@@ -505,13 +505,13 @@
                                 <svg class="icon">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#email-icon"></use>
                                 </svg>
-                                <a href="mailto:info@nhanam.vn">info@mote.vn</a>
+                                <a>info@mote.vn</a>
                             </li>
                             <li>
                                 <svg class="icon">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#phone-icon"></use>
                                 </svg>
-                                <a class="phone" href="tel:0868219140">
+                                <a class="phone">
                                     0868219140
                                 </a>
                             </li>
@@ -519,7 +519,7 @@
                                 <svg class="icon">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mobile-icon"></use>
                                 </svg>
-                                <a class="phone" href="tel:0868219140">
+                                <a class="phone">
                                     0868219140
                                 </a>
                             </li>
@@ -532,10 +532,10 @@
                             </span>
                         </h4>
                         <ul class="list-menu">
-                            <li class="li_menu"><a href="/gioi-thieu" title="Về Nhã Nam">Về Mờ Tê</a></li>
+                            <li class="li_menu"><a href="<?php echo BASE_URL; ?>/customer/module/booknews/introduction.php" title="Về Mờ Tê">Về Mờ Tê</a></li>
                             <li class="li_menu"><a href="/he-thong-hieu-sach" title="Hệ thống hiệu sách">Hệ thống hiệu sách</a></li>
                             <li class="li_menu"><a href="/he-thong-cua-hang" title="Hệ thống phát hành">Hệ thống phát hành</a></li>
-                            <li class="li_menu"><a href="/tuyen-dung" title="Tuyển dụng">Tuyển dụng</a></li>
+                            <li class="li_menu"><a href="<?php echo BASE_URL; ?>/customer/introduce/recruitment.php" title="Tuyển dụng">Tuyển dụng</a></li>
                             <li class="li_menu"><a href="/lien-he-voi-chung-toi" title="Liên hệ với chúng tôi">Liên hệ với chúng tôi</a></li>
                         </ul>
                     </div>
@@ -546,9 +546,9 @@
                             </span>
                         </h4>
                         <ul class="list-menu">
-                            <li class="li_menu"><a href="/chinh-sach" title="Chính sách bảo mật">Chính sách bảo mật</a></li>
-                            <li class="li_menu"><a href="/chinh-sach" title="Chính sách đổi trả/hoàn tiền">Chính sách đổi trả/hoàn tiền</a></li>
-                            <li class="li_menu"><a href="/chinh-sach" title="Chính sách thanh toán/ vận chuyển">Chính sách thanh toán/ vận chuyển</a></li>
+                            <li class="li_menu"><a href="<?php echo BASE_URL; ?>/customer/introduce/policy.php" title="Chính sách bảo mật">Chính sách bảo mật</a></li>
+                            <li class="li_menu"><a href="<?php echo BASE_URL; ?>/customer/introduce/policy.php" title="Chính sách đổi trả/hoàn tiền">Chính sách đổi trả/hoàn tiền</a></li>
+                            <li class="li_menu"><a href="<?php echo BASE_URL; ?>/customer/introduce/policy.php" title="Chính sách thanh toán/ vận chuyển">Chính sách thanh toán/ vận chuyển</a></li>
                         </ul>
                     </div>
 
