@@ -61,17 +61,34 @@
         <i class="fas fa-bars"></i>
     </div>
     <ul>
-        <li><i class="fas fa-tachometer-alt"></i> <span>Bảng thống kê</span></li>
+        <li>
+            <a href="/EBOOKS_STORE/admin/module/stats_sheet/stats_sheet.php" style="color: inherit; text-decoration: none;">
+                <i class="fas fa-tachometer-alt"></i> <span>Bảng thống kê</span>
+            </a>
+        </li>
         <li>
             <a href="/EBOOKS_STORE/admin/module/books/books.php" style="color: inherit; text-decoration: none;">
                 <i class="fas fa-book"></i> <span>Quản lý sách</span>
             </a>
         </li>
-        <li><i class="fas fa-user"></i> <span>Quản lý khách hàng</span></li>
-        <li><i class="fas fa-receipt"></i> <span>Quản lý đơn hàng</span></li>
+        <li>
+            <a href="/EBOOKS_STORE/admin/module/user/users.php" style="color: inherit; text-decoration: none;">
+                <i class="fas fa-user"></i> <span>Quản lý khách hàng</span>
+            </a>
+        </li>
+        <li>
+            <a href="/EBOOKS_STORE/admin/module/order/order.php" style="color: inherit; text-decoration: none;">
+                <i class="fas fa-receipt"></i> <span>Quản lý đơn hàng</span>
+            </a>
+        </li>
         <li>
             <a href="/EBOOKS_STORE/admin/module/author/author.php" style="color: inherit; text-decoration: none;">
                 <i class="fas fa-pen-nib"></i> <span>Quản lý tác giả</span>
+            </a>
+        </li>
+        <li>
+            <a href="/EBOOKS_STORE/admin/module/NXB/NXB.php" style="color: inherit; text-decoration: none;">
+                <i class="fas fa-building"></i> <span>Quản lý nhà xuất bản</span>
             </a>
         </li>
         <li>
