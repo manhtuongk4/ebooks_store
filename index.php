@@ -49,7 +49,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </div>
                                     <article class="item_blog_base first">
                                         <a class="thumb " href="/thong-bao-dat-truoc-ban-bia-cung-gioi-han-co-chu-ky-tac-gia-doi-gio-bui" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI">
-                                            <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/dat-truoc-bia-cung-gioi-han-co-chu-ky-4.png?v=1764565517637" alt="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="lazyload img-responsive loading" data-was-processed="true">
+                                            <img width="840" height="533" src="image/bia_poster.png" alt="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="lazyload img-responsive loading" data-was-processed="true">
                                         </a>
                                         <div class="content_blog">
                                             <h3><a href="/thong-bao-dat-truoc-ban-bia-cung-gioi-han-co-chu-ky-tac-gia-doi-gio-bui" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="a-title">THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ "ĐỜI GIÓ BỤI"</a></h3>
@@ -65,10 +65,10 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </div>
                                     <article class="item_blog_base first">
                                         <a class="thumb " href="#" title="MỜ TÊ BOOKFEST - HỘI SÁCH TRI ÂN">
-                                            <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/z7222165973517-1a550cde17a0b848f8f7e5c32015cc13.jpg?v=1763088395910" alt="NHÃ NAM BOOKFEST - HỘI SÁCH TRI ÂN" class="lazyload img-responsive loading" data-was-processed="true">
+                                            <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/z7222165973517-1a550cde17a0b848f8f7e5c32015cc13.jpg?v=1763088395910" alt="MỜ TÊ BOOKFEST - HỘI SÁCH TRI ÂN" class="lazyload img-responsive loading" data-was-processed="true">
                                         </a>
                                         <div class="content_blog">
-                                            <h3><a href="#" title="MỜ TÊ BOOKFEST - HỘI SÁCH TRI ÂN" class="a-title">NHÃ NAM BOOKFEST - HỘI SÁCH TRI ÂN</a></h3>
+                                            <h3><a href="#" title="MỜ TÊ BOOKFEST - HỘI SÁCH TRI ÂN" class="a-title">MỜ TÊ BOOKFEST - HỘI SÁCH TRI ÂN</a></h3>
                                             <span>
                                                 Thứ Năm,
                                                 13/11/2025</span>
@@ -81,10 +81,10 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </div>
                                     <article class="item_blog_base first">
                                         <a class="thumb " href="#" title="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG MỜ TÊ NHA TRANG VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH">
-                                            <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/nha-nam-truso.jpg?v=1763022277093" alt="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG NHÃ NAM HÀ NỘI VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH" class="lazyload img-responsive loading" data-was-processed="true">
+                                            <img width="840" height="533" src="image/bia_poster1.png" alt="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG MỜ TÊ NHA TRANG VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH" class="lazyload img-responsive loading" data-was-processed="true">
                                         </a>
                                         <div class="content_blog">
-                                            <h3><a href="#" title="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG MỜ TÊ NHA TRANG VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH" class="a-title">THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG NHÃ NAM HÀ NỘI VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH</a></h3>
+                                            <h3><a href="#" title="THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG MỜ TÊ NHA TRANG VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH" class="a-title">THÔNG BÁO CHUYỂN TRỤ SỞ VĂN PHÒNG MỜ TÊ NHA TRANG VÀ THAY ĐỔI ĐỊA ĐIỂM HIỆU SÁCH</a></h3>
                                             <span>
                                                 Thứ Năm,
                                                 13/11/2025</span>
@@ -97,7 +97,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </div>
                                     <article class="item_blog_base first">
                                         <a class="thumb " href="#" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI">
-                                            <img width="840" height="533" src="https://bizweb.dktcdn.net/100/363/455/articles/dat-truoc-bia-cung-gioi-han-co-chu-ky-4.png?v=1764565517637" alt="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="lazyload img-responsive loading" data-was-processed="true">
+                                            <img width="840" height="533" src="/EBOOKS_STORE/image/bia_poster.png" alt="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="lazyload img-responsive loading" data-was-processed="true">
                                         </a>
                                         <div class="content_blog">
                                             <h3><a href="#" title="THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ ĐỜI GIÓ BỤI" class="a-title">THÔNG BÁO ĐẶT TRƯỚC BẢN BÌA CỨNG GIỚI HẠN CÓ CHỮ KÝ TÁC GIẢ "ĐỜI GIÓ BỤI"</a></h3>
@@ -217,13 +217,13 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                 $i = 1;
                                 while ($row = $result_authors->fetch_assoc()) {
                                     $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $row['TenTacGia']));
-                                    echo '<div class="swiper-slide' . ($i == 1 ? ' swiper-slide-active' : ($i == 2 ? ' swiper-slide-next' : '')) . '" style="width: 250px; margin-right: 10px;" role="group" aria-label="' . $i . ' / ' . $result_authors->num_rows . '">';
+                                    echo '<div class="swiper-slide' . ($i == 1 ? ' swiper-slide-active' : ($i == 2 ? ' swiper-slide-next' : '')) . '" style="width: 250px; margin-right: 6px;" role="group" aria-label="' . $i . ' / ' . $result_authors->num_rows . '">';
                                     echo '<div class="d-none"></div>';
                                     echo '<article class="item_author_base">';
-                                    echo '<a class="thumb image_thumb" href="/' . $slug . '" title="' . htmlspecialchars($row['TenTacGia']) . '">';
+                                    echo '<a class="thumb image_thumb" href="' . BASE_URL . '/customer/module/review/authorreview.php?matacgia=' . urlencode($row['MaTacGia']) . '" title="' . htmlspecialchars($row['TenTacGia']) . '">';
                                     echo '<img width="150" height="150" src="' . htmlspecialchars($row['HinhAnh']) . '" data-src="' . htmlspecialchars($row['HinhAnh']) . '" alt="' . htmlspecialchars($row['TenTacGia']) . '" class="lazyload img-responsive loaded" data-was-processed="true">';
                                     echo '</a>';
-                                    echo '<h3><a href="/' . $slug . '" title="' . htmlspecialchars($row['TenTacGia']) . '" class="a-title">' . htmlspecialchars($row['TenTacGia']) . '</a></h3>';
+                                    echo '<h3><a href="' . BASE_URL . '/customer/module/review/authorreview.php?matacgia=' . urlencode($row['MaTacGia']) . '" title="' . htmlspecialchars($row['TenTacGia']) . '" class="a-title">' . htmlspecialchars($row['TenTacGia']) . '</a></h3>';
                                     echo '</article>';
                                     echo '</div>';
                                     $i++;
@@ -233,7 +233,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                         </div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
-                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-7c250153b2f9d8b5" aria-disabled="true"><svg class="icon">
+                    <div class="swiper-button-prev" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-7c250153b2f9d8b5" aria-disabled="true"><svg class="icon">
                             <use xlink:href="#arrow-left"></use>
                         </svg></div>
                     <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-7c250153b2f9d8b5" aria-disabled="false"><svg class="icon">
@@ -256,28 +256,28 @@ $page_title = "Trang chủ - Mờ Tê VN";
                     <div class="swiper-container slide-book-new swiper-container-initialized swiper-container-horizontal" style="cursor: grab;">
                         <div class="swiper-wrapper" id="swiper-wrapper-fd8dbb0d774e4496" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
                             <?php
-                            $sql_books = "SELECT * FROM sach ORDER BY NamXuatBan DESC, MaSach DESC LIMIT 8";
+                            $sql_books = "SELECT * FROM sach ORDER BY NamXuatBan DESC, MaSach DESC LIMIT 12";
                             $result_books = $conn->query($sql_books);
                             if ($result_books && $result_books->num_rows > 0) {
                                 $i = 1;
                                 while ($row = $result_books->fetch_assoc()) {
                                     $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $row['TenSach']));
-                                    echo '<div class="swiper-slide' . ($i == 1 ? ' swiper-slide-active' : ($i == 2 ? ' swiper-slide-next' : '')) . '" style="width: 250px; margin-right: 10px;" role="group" aria-label="' . $i . ' / ' . $result_books->num_rows . '">';
+                                    echo '<div class="swiper-slide' . ($i == 1 ? ' swiper-slide-active' : ($i == 2 ? ' swiper-slide-next' : '')) . '" style="width: 250px; margin-right: 6px;" role="group" aria-label="' . $i . ' / ' . $result_books->num_rows . '">';
                                     echo '<div class="item_product_main">';
                                     echo '<form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" enctype="multipart/form-data">';
                                     echo '<div class="thumb">';
-                                    echo '<a class="image_thumb" href="/' . $slug . '" title="' . htmlspecialchars($row['TenSach']) . '">';
+                                    echo '<a class="image_thumb" href="' . BASE_URL . '/customer/module/review/bookreview.php?masach=' . urlencode($row['MaSach']) . '" title="' . htmlspecialchars($row['TenSach']) . '">';
                                     echo '<img width="199" height="199" src="' . htmlspecialchars($row['Anh']) . '" data-src="' . htmlspecialchars($row['Anh']) . '" alt="' . htmlspecialchars($row['TenSach']) . '" class="lazyload img-responsive center-block loaded" data-was-processed="true">';
                                     echo '</a>';
                                     echo '<div class="action-cart">';
                                     echo '<button type="button" class="btn btn-lg btn-gray add_to_cart btn_buy buy-normal " title="Thêm vào giỏ" data-masach="' . htmlspecialchars($row['MaSach']) . '" data-qty="1">';
                                     echo '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#addcarticon"></use></svg>';
                                     echo '</button>';
-                                    echo '<button class="btn-buy btn-left btn-views  btn-buy-now-grid" title="Mua ngay">Mua ngay</button>';
+                                    echo '<button type="button" class="btn-buy btn-left btn-views btn-buy-now-grid" title="Mua ngay" data-masach="' . htmlspecialchars($row['MaSach']) . '" data-qty="1">Mua ngay</button>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '<div class="info-product">';
-                                    echo '<h3 class="product-name"><a href="/' . $slug . '" title="' . htmlspecialchars($row['TenSach']) . '">' . htmlspecialchars($row['TenSach']) . '</a></h3>';
+                                    echo '<h3 class="product-name"><a href="' . BASE_URL . '/customer/module/review/bookreview.php?masach=' . urlencode($row['MaSach']) . '" title="' . htmlspecialchars($row['TenSach']) . '">' . htmlspecialchars($row['TenSach']) . '</a></h3>';
                                     echo '<div class="price-box">';
                                     echo '<span class="price">' . number_format($row['DonGiaBan'], 0, ",", ".") . '₫</span>';
                                     if (!empty($row['DonGiaNhap']) && $row['DonGiaNhap'] > 0 && $row['DonGiaNhap'] < $row['DonGiaBan']) {
@@ -295,7 +295,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                         </div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
-                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-fd8dbb0d774e4496" aria-disabled="true"><svg class="icon">
+                    <div class="swiper-button-prev" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-fd8dbb0d774e4496" aria-disabled="true"><svg class="icon">
                             <use xlink:href="#arrow-left"></use>
                         </svg></div>
                     <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-fd8dbb0d774e4496" aria-disabled="false"><svg class="icon">
@@ -304,6 +304,60 @@ $page_title = "Trang chủ - Mờ Tê VN";
                 </div>
             </div>
         </section>
+
+        <script>
+            // Slider cho phần "Sách mới"
+            var bookNewSlider = new Swiper('.slide-book-new', {
+                slidesPerView: 4,
+                spaceBetween: 10,
+                loop: true,
+                grabCursor: true,
+                speed: 500,
+                navigation: {
+                    nextEl: '.book_new .swiper-button-next',
+                    prevEl: '.book_new .swiper-button-prev',
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1.3,
+                    },
+                    576: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 2.5,
+                    },
+                    992: {
+                        slidesPerView: 5,
+                    }
+                }
+            });
+
+            // Slider cho phần "Các tác giả"
+            var authorSlider = new Swiper('.slide-author', {
+                slidesPerView: 4,
+                spaceBetween: 10,
+                loop: true,
+                grabCursor: true,
+                speed: 500,
+                navigation: {
+                    nextEl: '.section_author_featured .swiper-button-next',
+                    prevEl: '.section_author_featured .swiper-button-prev',
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2.2,
+                    },
+                    576: {
+                        slidesPerView: 3,
+                    },
+                    992: {
+                        slidesPerView: 5,
+                    }
+                }
+            });
+        </script>
+
         <section class="section_info">
             <div class="container">
                 <div class="row">
@@ -342,7 +396,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                 <div class="slide-product-wrap relative swiper-button-main">
                     <div class="swiper-container slide-book-comingsoon swiper-container-initialized swiper-container-horizontal" style="cursor: grab;">
                         <div class="swiper-wrapper" id="swiper-wrapper-b7142e18a911b872" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
-                            <div class="swiper-slide swiper-slide-active" style="width: 250px; margin-right: 10px;" role="group" aria-label="1 / 8">
+                            <div class="swiper-slide swiper-slide-active" style="width: 250px; margin-right: 6px;" role="group" aria-label="1 / 8">
                                 <div class="item_product_main">
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63472234" enctype="multipart/form-data">
@@ -364,7 +418,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </form>
                                 </div>
                             </div>
-                            <div class="swiper-slide swiper-slide-next" style="width: 250px; margin-right: 10px;" role="group" aria-label="2 / 8">
+                            <div class="swiper-slide swiper-slide-next" style="width: 250px; margin-right: 6px;" role="group" aria-label="2 / 8">
                                 <div class="item_product_main">
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63472119" enctype="multipart/form-data">
@@ -386,7 +440,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </form>
                                 </div>
                             </div>
-                            <div class="swiper-slide" style="width: 250px; margin-right: 10px;" role="group" aria-label="3 / 8">
+                            <div class="swiper-slide" style="width: 250px; margin-right: 6px;" role="group" aria-label="3 / 8">
                                 <div class="item_product_main">
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63471979" enctype="multipart/form-data">
@@ -408,7 +462,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </form>
                                 </div>
                             </div>
-                            <div class="swiper-slide" style="width: 250px; margin-right: 10px;" role="group" aria-label="4 / 8">
+                            <div class="swiper-slide" style="width: 250px; margin-right: 6px;" role="group" aria-label="4 / 8">
                                 <div class="item_product_main">
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63463590" enctype="multipart/form-data">
@@ -430,7 +484,7 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </form>
                                 </div>
                             </div>
-                            <div class="swiper-slide" style="width: 250px; margin-right: 10px;" role="group" aria-label="5 / 8">
+                            <div class="swiper-slide" style="width: 250px; margin-right: 6px;" role="group" aria-label="5 / 8">
                                 <div class="item_product_main">
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63462918" enctype="multipart/form-data">
@@ -452,81 +506,15 @@ $page_title = "Trang chủ - Mờ Tê VN";
                                     </form>
                                 </div>
                             </div>
-                            <div class="swiper-slide" style="width: 250px; margin-right: 10px;" role="group" aria-label="6 / 8">
-                                <div class="item_product_main">
-
-                                    <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63462113" enctype="multipart/form-data">
-                                        <div class="thumb">
-                                            <a class="image_thumb" href="/ky-nang-song-toan-dien-tinh-tam" title="Kỹ năng sống toàn diện: Tĩnh tâm">
-                                                <img width="199" height="199" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" data-src="https://bizweb.dktcdn.net/100/363/455/products/ky-nang-song-toan-dien-tinh-tam-cover-01.jpg?v=1763965203373" alt="Kỹ năng sống toàn diện: Tĩnh tâm" class="lazyload img-responsive center-block">
-                                            </a>
-                                            <div class="action-cart">
-                                            </div>
-                                        </div>
-                                        <div class="info-product">
-                                            <h3 class="product-name"><a href="/ky-nang-song-toan-dien-tinh-tam" title="Kỹ năng sống toàn diện: Tĩnh tâm">Kỹ năng sống toàn diện: Tĩnh tâm</a></h3>
-
-                                            <div class="price-box">
-                                                Liên hệ
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="swiper-slide" style="width: 250px; margin-right: 10px;" role="group" aria-label="7 / 8">
-                                <div class="item_product_main">
-
-                                    <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63461419" enctype="multipart/form-data">
-                                        <div class="thumb">
-                                            <a class="image_thumb" href="/ky-nang-song-toan-dien-kien-gan-ben-chi" title="Kỹ năng sống toàn diện: Kiên gan bền chí">
-                                                <img width="199" height="199" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" data-src="https://bizweb.dktcdn.net/100/363/455/products/ky-nang-song-toan-dien-kien-gan-ben-chi-cover-01.jpg?v=1763965332747" alt="Kỹ năng sống toàn diện: Kiên gan bền chí" class="lazyload img-responsive center-block">
-                                            </a>
-                                            <div class="action-cart">
-                                            </div>
-                                        </div>
-                                        <div class="info-product">
-                                            <h3 class="product-name"><a href="/ky-nang-song-toan-dien-kien-gan-ben-chi" title="Kỹ năng sống toàn diện: Kiên gan bền chí">Kỹ năng sống toàn diện: Kiên gan bền chí</a></h3>
-
-                                            <div class="price-box">
-                                                Liên hệ
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="swiper-slide" style="width: 250px; margin-right: 10px;" role="group" aria-label="8 / 8">
-                                <div class="item_product_main">
-
-                                    <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63460401" enctype="multipart/form-data">
-                                        <div class="thumb">
-                                            <a class="image_thumb" href="/ky-nang-song-toan-dien-mang-luoi-an-toan" title="Kỹ năng sống toàn diện: Mạng lưới an toàn">
-                                                <img width="199" height="199" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" data-src="https://bizweb.dktcdn.net/100/363/455/products/ky-nang-song-toan-dien-mang-luoi-an-toan-cover-01.jpg?v=1763965140640" alt="Kỹ năng sống toàn diện: Mạng lưới an toàn" class="lazyload img-responsive center-block">
-                                            </a>
-                                            <div class="action-cart">
-                                            </div>
-                                        </div>
-                                        <div class="info-product">
-                                            <h3 class="product-name"><a href="/ky-nang-song-toan-dien-mang-luoi-an-toan" title="Kỹ năng sống toàn diện: Mạng lưới an toàn">Kỹ năng sống toàn diện: Mạng lưới an toàn</a></h3>
-
-                                            <div class="price-box">
-                                                Liên hệ
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
-                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-b7142e18a911b872" aria-disabled="true"><svg class="icon">
+                    <!-- <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-b7142e18a911b872" aria-disabled="true"><svg class="icon">
                             <use xlink:href="#arrow-left"></use>
                         </svg></div>
                     <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-b7142e18a911b872" aria-disabled="false"><svg class="icon">
                             <use xlink:href="#arrow-left"></use>
-                        </svg></div>
+                        </svg></div> -->
                 </div>
             </div>
         </section>
