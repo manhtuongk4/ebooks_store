@@ -17,10 +17,23 @@ include dirname(__DIR__, 3) . '/layout/header.php';
         <div class="container">
             <div class="wrap_background_aside padding-top-15 margin-bottom-40">
                 <div class="row">
-                    <div class="content-page rte offset-lg-1 offset-xl-2 col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+                    <div class="col-lg-2 col-md-12 col-12">
+                        <aside class="aside-item sidebar-menu sidebar-menu__blog">
+                            <h2 class="title-module">Danh mục</h2>
+                            <div class="sidebar-menu__content">
+                                <ul class="sidebar-list">
+                                    <li class="current"><a href="/EBOOKS_STORE/customer/module/booknews/introduction.php">Tin bản quyền</a></li>
+                                    <li class=""><a href="/EBOOKS_STORE/customer/module/booknews/press.php">Tin báo chí</a></li>
+                                    <li class=""><a href="/EBOOKS_STORE/customer/module/booknews/readerbookreview.php">Độc giả review</a></li>
+                                    <li class=""><a href="/EBOOKS_STORE/customer/module/booknews/editor_introduction.php">Biên tập viên giới thiệu</a></li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="content-page rte col-lg-7 col-md-12 col-12">
                         <h1 class="title-page" style="color:green">Về Mờ Tê</h1>
                         <p style="margin-bottom: 11px; text-align: justify;">&nbsp;</p>
-                        <p style="margin-bottom: 11px; text-align: justify;"><img data-thumb="original" original-height="540" original-width="850" src="//bizweb.dktcdn.net/100/363/455/files/untitled-design-1.png?v=1695720988683"></p>
+                        <p style="margin-bottom: 11px; text-align: justify;"><img data-thumb="original" original-height="540" original-width="850" src="/EBOOKS_STORE/image/tin_mo_te.jpg" alt="Giới thiệu Mờ Tê" style="width: 100%; height: auto;"></p>
                         <p style="margin-bottom: 11px; text-align: justify;">&nbsp;</p>
                         <p style="margin-bottom: 11px; text-align: justify;"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><strong><span style="font-family:Arial,Helvetica,sans-serif;">Mờ Tê</span></strong>, tên đầy đủ là Công ty Cổ phần Văn hóa và Truyền thông Mờ Tê,&nbsp;gia nhập thị trường sách Việt Nam vào tháng 2 năm 2005 với tác phẩm "<em>Balzac và cô bé thợ may Trung hoa</em>" của Đới Tư Kiệt.</span></span></p>
                         <p style="margin-bottom: 11px; text-align: justify;"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif">Ngay từ cuốn sách đầu tiên, độc giả đã dành sự quan tâm và yêu mến cho một thương hiệu sách mới mẻ mang trong mình khát vọng góp phần tạo lập diện mạo mới cho xuất bản văn học tại Việt Nam.</span></span></p>
