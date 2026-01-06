@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 17, 2025 lúc 04:10 AM
+-- Thời gian đã tạo: Th1 06, 2026 lúc 03:16 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -35,6 +35,17 @@ CREATE TABLE `chi_tiet_hoa_don` (
   `ThanhTien` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `chi_tiet_hoa_don`
+--
+
+INSERT INTO `chi_tiet_hoa_don` (`MaHD`, `MaSach`, `SoLuongBan`, `DonGiaBan`, `ThanhTien`) VALUES
+('HD04058258', 'S020', 1, 80000.00, 80000.00),
+('HD59323999', 'S020', 1, 80000.00, 80000.00),
+('HD92951611', 'S020', 1, 80000.00, 80000.00),
+('HD95224789', 'S020', 1, 80000.00, 80000.00),
+('HD95381880', 'S020', 1, 80000.00, 80000.00);
+
 -- --------------------------------------------------------
 
 --
@@ -47,8 +58,17 @@ CREATE TABLE `danh_gia_binh_luan` (
   `MaKH` varchar(10) NOT NULL,
   `SoSao` int(11) DEFAULT NULL CHECK (`SoSao` >= 1 and `SoSao` <= 5),
   `NoiDung` text DEFAULT NULL,
-  `NgayDang` datetime DEFAULT NULL
+  `TraLoi` text DEFAULT NULL,
+  `NgayDang` datetime DEFAULT NULL,
+  `NgayTraLoi` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `danh_gia_binh_luan`
+--
+
+INSERT INTO `danh_gia_binh_luan` (`MaDG`, `MaSach`, `MaKH`, `SoSao`, `NoiDung`, `TraLoi`, `NgayDang`, `NgayTraLoi`) VALUES
+(1, 'S020', 'KH001', 5, 'sách rất hay, tôi rất thích nó !', 'cảm ơn bạn đã ủng hộ shop !', '2026-01-05 00:53:24', '2026-01-05 01:17:47');
 
 -- --------------------------------------------------------
 
@@ -82,6 +102,35 @@ INSERT INTO `dich_gia` (`MaDichGia`, `TenDichGia`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `giao_dich_thanh_toan`
+--
+
+CREATE TABLE `giao_dich_thanh_toan` (
+  `MaGiaoDich` varchar(50) NOT NULL,
+  `MaGiaoDichNganHang` varchar(100) DEFAULT NULL,
+  `MaHD` varchar(10) DEFAULT NULL,
+  `NgayGiaoDich` datetime DEFAULT current_timestamp(),
+  `SoTien` decimal(12,2) DEFAULT NULL,
+  `SoTaiKhoanNhan` varchar(20) DEFAULT NULL,
+  `NoiDungThanhToan` text DEFAULT NULL,
+  `TrangThai` varchar(50) DEFAULT 'Pending',
+  `PhanHoiTuNganHang` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`PhanHoiTuNganHang`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giao_dich_thanh_toan`
+--
+
+INSERT INTO `giao_dich_thanh_toan` (`MaGiaoDich`, `MaGiaoDichNganHang`, `MaHD`, `NgayGiaoDich`, `SoTien`, `SoTaiKhoanNhan`, `NoiDungThanhToan`, `TrangThai`, `PhanHoiTuNganHang`) VALUES
+('GD260103042219576', NULL, 'HD04058258', '2026-01-03 10:22:19', 80000.00, NULL, 'Thanh toan don hang HD04058258 qua BIDV', 'KhoiTao', NULL),
+('GD260103043447787', NULL, 'HD95381880', '2026-01-03 10:34:47', 80000.00, NULL, 'Thanh toan don hang HD95381880 qua BIDV', 'KhoiTao', NULL),
+('GD260103043504774', NULL, 'HD95224789', '2026-01-03 10:35:04', 80000.00, NULL, 'Thanh toan don hang HD95224789 qua BIDV', 'KhoiTao', NULL),
+('GD260103044857871', NULL, 'HD59323999', '2026-01-03 10:48:57', 80000.00, NULL, 'Thanh toan don hang HD59323999 qua BIDV', 'KhoiTao', NULL),
+('GD260103051731227', NULL, 'HD92951611', '2026-01-03 11:17:31', 80000.00, NULL, 'Thanh toan don hang HD92951611 qua BIDV', 'KhoiTao', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `hoa_don`
 --
 
@@ -90,8 +139,22 @@ CREATE TABLE `hoa_don` (
   `NgayLapHD` date NOT NULL,
   `MaKH` varchar(10) DEFAULT NULL,
   `MaNhanVien` varchar(10) DEFAULT NULL,
-  `TongTien` decimal(12,2) NOT NULL DEFAULT 0.00
+  `TongTien` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `PhuongThucThanhToan` varchar(50) DEFAULT 'COD',
+  `TrangThaiThanhToan` varchar(20) DEFAULT 'ChuaThanhToan',
+  `MaGiaoDichNganHang` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoa_don`
+--
+
+INSERT INTO `hoa_don` (`MaHD`, `NgayLapHD`, `MaKH`, `MaNhanVien`, `TongTien`, `PhuongThucThanhToan`, `TrangThaiThanhToan`, `MaGiaoDichNganHang`) VALUES
+('HD04058258', '2026-01-03', 'KH001', NULL, 80000.00, 'BIDV', 'ChoThanhToan', 'GD260103042219576'),
+('HD59323999', '2026-01-03', 'KH001', NULL, 80000.00, 'BIDV', 'ChoThanhToan', 'GD260103044857871'),
+('HD92951611', '2026-01-03', 'KH001', NULL, 80000.00, 'BIDV', 'DaThanhToan', 'GD260103051731227'),
+('HD95224789', '2026-01-03', 'KH001', NULL, 80000.00, 'BIDV', 'DaThanhToan', 'GD260103043504774'),
+('HD95381880', '2026-01-03', 'KH001', NULL, 80000.00, 'BIDV', 'DaThanhToan', 'GD260103043447787');
 
 -- --------------------------------------------------------
 
@@ -114,7 +177,7 @@ CREATE TABLE `khach_hang` (
 --
 
 INSERT INTO `khach_hang` (`MaKH`, `HoTenKH`, `DiaChi`, `SoDienThoai`, `Email`, `PasswordHash`, `Avatar`) VALUES
-('KH001', 'Nguyễn Mạnh Tường', 'Vĩnh Thọ, Nha Trang, Khánh Hòa', '0868219140', 'tuong.nm.64cntt@ntu.edu.vn', '0868219140Tg.', 'https://thichtrangtri.com/wp-content/uploads/2025/05/anh-meo-gian-cute-3.jpg');
+('KH001', 'Nguyễn Mạnh Tường', '123, Huyện Phù Ninh, Tỉnh Phú Thọ', '0868219140', 'tuong.nm.64cntt@ntu.edu.vn', '0868219140Tg.', 'https://thichtrangtri.com/wp-content/uploads/2025/05/anh-meo-gian-cute-3.jpg');
 
 -- --------------------------------------------------------
 
@@ -222,6 +285,23 @@ CREATE TABLE `sach_dichgia` (
   `MaDichGia` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `sach_dichgia`
+--
+
+INSERT INTO `sach_dichgia` (`MaSach`, `MaDichGia`) VALUES
+('S003', 'DG001'),
+('S004', 'DG001'),
+('S005', 'DG004'),
+('S008', 'DG003'),
+('S009', 'DG003'),
+('S012', 'DG004'),
+('S013', 'DG010'),
+('S014', 'DG002'),
+('S016', 'DG012'),
+('S017', 'DG001'),
+('S018', 'DG005');
+
 -- --------------------------------------------------------
 
 --
@@ -232,26 +312,27 @@ CREATE TABLE `tac_gia` (
   `MaTacGia` varchar(10) NOT NULL,
   `TenTacGia` varchar(150) NOT NULL,
   `NgaySinh` date DEFAULT NULL,
-  `HinhAnh` varchar(255) DEFAULT NULL
+  `HinhAnh` varchar(255) DEFAULT NULL,
+  `MoTa` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tac_gia`
 --
 
-INSERT INTO `tac_gia` (`MaTacGia`, `TenTacGia`, `NgaySinh`, `HinhAnh`) VALUES
-('TG001', 'Nguyễn Nhật Ánh', '1955-05-15', 'https://www.nxbtre.com.vn/Images/Writer/nxbtre_thumb_30552016_085555.jpg'),
-('TG002', 'Haruki Murakami', '1949-01-12', 'https://static.tuoitre.vn/tto/i/s626/2014/11/04/s0xUXnxi.jpg'),
-('TG003', 'Nguyễn Hiến Lê', '1912-01-11', 'https://upload.wikimedia.org/wikipedia/vi/a/a9/Nguyenhienle.jpg'),
-('TG004', 'J.K. Rowling', '1965-07-31', 'https://broadwaylicensing.com/wp-content/uploads/J.K.-Rowling_square.png'),
-('TG005', 'Stephen King', '1947-09-21', 'https://cdn.britannica.com/20/217720-050-857D712B/American-novelist-Stephen-King-2004.jpg'),
-('TG006', 'Dale Carnegie', '1888-11-24', 'https://ebookvie.com/wp-content/uploads/2024/02/Tac-gia-Dale-Carnegie.png'),
-('TG007', 'Yuval Noah Harari', '1976-08-24', 'https://upload.wikimedia.org/wikipedia/commons/f/f6/MKr364740_Yuval_Noah_Harari_%28Frankfurter_Buchmesse_2024%29_%28cropped%29.jpg'),
-('TG008', 'Tô Hoài', '1920-09-27', 'https://upload.wikimedia.org/wikipedia/vi/7/73/Nhavan_t%C3%B4_ho%C3%A0i.jpg'),
-('TG009', 'Hermann Hesse', '1877-07-02', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Hermann_Hesse_2.jpg/250px-Hermann_Hesse_2.jpg'),
-('TG010', 'Eric Ries', '1978-09-22', 'https://upload.wikimedia.org/wikipedia/commons/5/55/Eric_Ries2.jpg'),
-('TG011', 'Nguyễn Duy Cần', '1907-08-15', 'https://upload.wikimedia.org/wikipedia/vi/8/8c/Nguyen_Duy_Can.jpg'),
-('TG012', 'F. Scott Fitzgerald', '1896-09-24', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6UnW0FcDrbG6vrZarVez4Yo_EtWrz6bRhg&shttps://upload.wikimedia.org/wikipedia/commons/5/5c/F_Scott_Fitzgerald_1921.jpg');
+INSERT INTO `tac_gia` (`MaTacGia`, `TenTacGia`, `NgaySinh`, `HinhAnh`, `MoTa`) VALUES
+('TG001', 'Nguyễn Nhật Ánh', '1955-05-15', 'https://www.nxbtre.com.vn/Images/Writer/nxbtre_thumb_30552016_085555.jpg', 'Nguyễn Nhật Ánh là một nam nhà văn người Việt Nam. Được xem là một trong những nhà văn hiện đại xuất sắc nhất Việt Nam hiện nay, ông được biết đến qua nhiều tác phẩm văn học về đề tài tuổi trẻ. Nhiều tác phẩm của ông được nhiều thế hệ độc giả yêu mến và giới chuyên môn đánh giá cao, được chuyển thể thành phim và kịch nói.'),
+('TG002', 'Haruki Murakami', '1949-01-12', 'https://static.tuoitre.vn/tto/i/s626/2014/11/04/s0xUXnxi.jpg', 'Murakami Haruki là một trong những tiểu thuyết gia, dịch giả văn học người Nhật Bản được biết đến nhiều nhất hiện nay cả trong lẫn ngoài nước Nhật. Từ thời điểm nhận giải thưởng Nhà văn mới Gunzo năm 1979 đến nay, hơn một phần tư thế kỷ hoạt động và viết lách, tác phẩm của ông đã được dịch ra khoảng 50 thứ tiếng trên thế giới, đồng thời trong nước ông là người luôn tồn tại ở tiền cảnh sân khấu văn học Nhật Bản. Murakami đã trở thành hiện tượng trong văn học Nhật Bản đương đại với những mĩ danh \"nhà văn được yêu thích\", \"nhà văn bán chạy nhất\", \"nhà văn của giới trẻ\"'),
+('TG003', 'Nguyễn Hiến Lê', '1912-01-11', 'https://upload.wikimedia.org/wikipedia/vi/a/a9/Nguyenhienle.jpg', 'Nguyễn Hiến Lê là một học giả, nhà văn, dịch giả, nhà ngôn ngữ học, nhà giáo dục và hoạt động văn hóa độc lập người Việt Nam với 120 tác phẩm sáng tác, biên soạn và dịch thuật thuộc nhiều lĩnh vực khác nhau như giáo dục, văn học, ngữ học, triết học, lịch sử, du ký, gương danh nhân, chính trị, kinh tế, v.v.'),
+('TG004', 'J.K. Rowling', '1965-07-31', 'https://lovebookslovelife.vn/wp-content/uploads/2019/11/jjk-01-1200x1200.png', 'Joanne Rowling, thường được biết đến với bút danh J. K. Rowling, là một nhà văn, nhà từ thiện, nhà sản xuất phim và truyền hình, nhà biên kịch người Anh. Bà nổi tiếng là tác giả của bộ truyện giả tưởng Harry Potter từng đoạt nhiều giải thưởng và bán được hơn 500 triệu bản, trở thành bộ sách bán chạy nhất trong lịch sử. Bộ sách đã được chuyển thể thành một loạt phim ăn khách mà chính bà đã phê duyệt kịch bản và cũng là nhà sản xuất của hai phần cuối. Bà cũng viết tiểu thuyết trinh thám hình sự dưới bút danh Robert Galbraith.'),
+('TG005', 'Stephen King', '1947-09-21', 'https://cdn.britannica.com/20/217720-050-857D712B/American-novelist-Stephen-King-2004.jpg', 'Stephen Edwin King là một tác gia người mỹ. Vì danh tiếng của ông gắn liền với các tiểu thuyết kinh dị, nên ông nhận được danh xưng là \"Ông hoàng kinh dị\". Tuy nhiên, ông cũng đã thử sức với nhiều thể loại truyện khác, trong đó nổi bật nhất bao gồm giật gân, tội phạm, khoa học viễn tưởng, kỳ ảo và bí ẩn. Ngoài những cuốn tiểu thuyết, ông cũng đã sáng tác khoảng 200 truyện ngắn.'),
+('TG006', 'Dale Carnegie', '1888-11-24', 'https://ebookvie.com/wp-content/uploads/2024/02/Tac-gia-Dale-Carnegie.png', 'Dale Breckenridge Carnegie là một nhà văn và nhà thuyết trình Mỹ và là người phát triển các lớp tự giáo dục, nghệ thuật bán hàng, huấn luyện đoàn thể, nói trước công chúng và các kỹ năng giao tiếp giữa mọi người. Ra đời trong cảnh nghèo đói tại một trang trại ở Missouri, ông là tác giả cuốn Đắc Nhân Tâm, được xuất bản lần đầu năm 1936, một cuốn sách hàng bán chạy nhất và được biết đến nhiều nhất cho đến tận ngày nay, nội dung nói về cách ứng xử, cư xử trong cuộc sống. Ông cũng viết một cuốn tiểu sử Abraham Lincoln, với tựa đề Lincoln con người chưa biết, và nhiều cuốn sách khác.'),
+('TG007', 'Yuval Noah Harari', '1976-08-24', 'https://upload.wikimedia.org/wikipedia/commons/f/f6/MKr364740_Yuval_Noah_Harari_%28Frankfurter_Buchmesse_2024%29_%28cropped%29.jpg', 'Yuval Noah Harari là một nhà sử học người Israel và là giáo sư Khoa Lịch sử tại Đại học Hebrew Jerusalem. Ông là tác giả của các cuốn sách bán chạy thế giới Sapiens: Lược sử loài người (2014), Homo Deus: Lược sử tương lai (2016) và 21 bài học cho thế kỷ 21 (2018). Bài viết của ông xoay quanh ý chí tự do, ý thức và trí thông minh và hạnh phúc.'),
+('TG008', 'Tô Hoài', '1920-09-27', 'https://upload.wikimedia.org/wikipedia/vi/7/73/Nhavan_t%C3%B4_ho%C3%A0i.jpg', 'Tô Hoài là một nhà văn Việt Nam được tặng Giải thưởng Hồ Chí Minh về Văn học Nghệ thuật năm 1996. Ông là Tổng Thư ký đầu tiên của Hội Nhà văn Việt Nam (1957-1963). Dế Mèn phiêu lưu ký là tác phẩm được nhiều người biết nhất của ông dành cho thiếu nhi.'),
+('TG009', 'Hermann Hesse', '1877-07-02', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Hermann_Hesse_2.jpg/250px-Hermann_Hesse_2.jpg', 'Hermann Hesse là một nhà thơ, nhà văn và họa sĩ người Đức. Năm 1946 ông được tặng Giải Goethe và Giải Nobel Văn học.'),
+('TG010', 'Eric Ries', '1978-09-22', 'https://upload.wikimedia.org/wikipedia/commons/5/55/Eric_Ries2.jpg', 'Eric Ries là một doanh nhân người Mỹ, blogger và tác giả của The Lean Startup, một cuốn sách về phong trào khởi nghiệp tinh gọn. Ông cũng là tác giả của The Startup Way, một cuốn sách về quản lý doanh nhân hiện đại.'),
+('TG011', 'Nguyễn Duy Cần', '1907-08-15', 'https://upload.wikimedia.org/wikipedia/vi/8/8c/Nguyen_Duy_Can.jpg', 'Nguyễn Duy Cần (1907-1998), hiệu Thu Giang, là một học giả, nhà văn, nhà biên khảo và trước tác kỳ cựu vào bậc nhất Việt Nam giữa thế kỷ 20.'),
+('TG012', 'F. Scott Fitzgerald', '1896-09-24', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6UnW0FcDrbG6vrZarVez4Yo_EtWrz6bRhg&shttps://upload.wikimedia.org/wikipedia/commons/5/5c/F_Scott_Fitzgerald_1921.jpg', 'Francis Scott Key Fitzgerald là một nhà văn nổi tiếng người Mĩ. Những tác phẩm của ông được biết đến rộng rãi bởi âm hưởng và tinh thần từ Thời đại Jazz, đây cũng là cụm từ được chính Fitzgerald phổ biến từ tập truyện ngắn Truyện kể Thời đại Jazz (Tales of Jazz Age). Ông cũng được biết tới là một trong những cây bút nổi bật của Thế hệ đã mất với tác phẩm nổi tiếng nhất là Gatsby vĩ đại (The Great Gatsby).');
 
 -- --------------------------------------------------------
 
@@ -279,7 +360,7 @@ INSERT INTO `the_loai` (`MaTheLoai`, `TenTheLoai`, `MoTa`) VALUES
 ('TL007', 'Khoa học viễn tưởng', 'Hư cấu'),
 ('TL008', 'Phiêu lưu ly kỳ', 'Hư cấu'),
 ('TL009', 'Tản Văn', 'Hư cấu'),
-('TL010', 'Truyện tranh (graphic novel)', 'Hư cấu'),
+('TL010', 'Truyện tranh', 'Hư cấu'),
 ('TL011', 'Tranh sách (picture book)', 'Hư cấu'),
 ('TL012', 'Triết học', 'Phi hư cấu'),
 ('TL013', 'Sử học', 'Phi hư cấu'),
@@ -320,6 +401,13 @@ ALTER TABLE `danh_gia_binh_luan`
 --
 ALTER TABLE `dich_gia`
   ADD PRIMARY KEY (`MaDichGia`);
+
+--
+-- Chỉ mục cho bảng `giao_dich_thanh_toan`
+--
+ALTER TABLE `giao_dich_thanh_toan`
+  ADD PRIMARY KEY (`MaGiaoDich`),
+  ADD KEY `MaHD` (`MaHD`);
 
 --
 -- Chỉ mục cho bảng `hoa_don`
@@ -385,7 +473,7 @@ ALTER TABLE `the_loai`
 -- AUTO_INCREMENT cho bảng `danh_gia_binh_luan`
 --
 ALTER TABLE `danh_gia_binh_luan`
-  MODIFY `MaDG` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -404,6 +492,12 @@ ALTER TABLE `chi_tiet_hoa_don`
 ALTER TABLE `danh_gia_binh_luan`
   ADD CONSTRAINT `danh_gia_binh_luan_ibfk_1` FOREIGN KEY (`MaSach`) REFERENCES `sach` (`MaSach`),
   ADD CONSTRAINT `danh_gia_binh_luan_ibfk_2` FOREIGN KEY (`MaKH`) REFERENCES `khach_hang` (`MaKH`);
+
+--
+-- Các ràng buộc cho bảng `giao_dich_thanh_toan`
+--
+ALTER TABLE `giao_dich_thanh_toan`
+  ADD CONSTRAINT `giao_dich_thanh_toan_ibfk_1` FOREIGN KEY (`MaHD`) REFERENCES `hoa_don` (`MaHD`);
 
 --
 -- Các ràng buộc cho bảng `hoa_don`
