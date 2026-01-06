@@ -87,6 +87,11 @@
             </a>
         </li>
         <li>
+            <a href="/EBOOKS_STORE/admin/module/translator/translator.php" style="color: inherit; text-decoration: none;">
+                <i class="fas fa-language"></i> <span>Quản lý dịch giả</span>
+            </a>
+        </li>
+        <li>
             <a href="/EBOOKS_STORE/admin/module/NXB/NXB.php" style="color: inherit; text-decoration: none;">
                 <i class="fas fa-building"></i> <span>Quản lý nhà xuất bản</span>
             </a>
