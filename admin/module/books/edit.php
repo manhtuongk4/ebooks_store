@@ -10,8 +10,9 @@ if (!isset($_GET['id'])) {
 }
 $id = mysqli_real_escape_string($conn, $_GET['id']);
 
-// Lấy danh sách tác giả, thể loại, NXB
+// Lấy danh sách tác giả, dịch giả, thể loại, NXB
 $authors = mysqli_query($conn, "SELECT MaTacGia, TenTacGia FROM tac_gia");
+$translators = mysqli_query($conn, "SELECT MaDichGia, TenDichGia FROM dich_gia");
 $categories = mysqli_query($conn, "SELECT MaTheLoai, TenTheLoai FROM the_loai");
 $publishers = mysqli_query($conn, "SELECT MaNXB, TenNXB FROM nha_xuat_ban");
 
@@ -23,9 +24,18 @@ if (!$result || mysqli_num_rows($result) == 0) {
 }
 $book = mysqli_fetch_assoc($result);
 
+// Lấy dịch giả hiện tại (nếu có)
+$currentMaDichGia = '';
+$resTrans = mysqli_query($conn, "SELECT MaDichGia FROM sach_dichgia WHERE MaSach='$id' LIMIT 1");
+if ($resTrans && mysqli_num_rows($resTrans) > 0) {
+    $rowTrans = mysqli_fetch_assoc($resTrans);
+    $currentMaDichGia = $rowTrans['MaDichGia'];
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $TenSach = mysqli_real_escape_string($conn, $_POST['TenSach']);
     $MaTacGia = mysqli_real_escape_string($conn, $_POST['MaTacGia']);
+    $MaDichGia = isset($_POST['MaDichGia']) ? mysqli_real_escape_string($conn, $_POST['MaDichGia']) : '';
     $MaTheLoai = mysqli_real_escape_string($conn, $_POST['MaTheLoai']);
     $MaNXB = mysqli_real_escape_string($conn, $_POST['MaNXB']);
     $DonGiaBan = floatval($_POST['DonGiaBan']);
@@ -38,6 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $update = "UPDATE sach SET TenSach='$TenSach', MaTacGia='$MaTacGia', MaTheLoai='$MaTheLoai', MaNXB='$MaNXB', DonGiaBan=$DonGiaBan, NamXuatBan=$NamXuatBan, SoLuongTon=$SoLuongTon, MoTa='$MoTa', KichThuoc='$KichThuoc', SoTrang=$SoTrang, Anh='$Anh' WHERE MaSach='$id'";
     if (mysqli_query($conn, $update)) {
+        // Cập nhật bảng sach_dichgia theo lựa chọn mới
+        mysqli_query($conn, "DELETE FROM sach_dichgia WHERE MaSach='$id'");
+        if ($MaDichGia !== '') {
+            mysqli_query($conn, "INSERT INTO sach_dichgia (MaSach, MaDichGia) VALUES ('$id', '$MaDichGia')");
+        }
+
+        $currentMaDichGia = $MaDichGia;
+
         $msg = 'Cập nhật thành công!';
         // Reload lại dữ liệu mới
         $result = mysqli_query($conn, $sql);
@@ -193,6 +211,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <select name="MaTacGia" required>
                         <?php while ($a = mysqli_fetch_assoc($authors)): ?>
                             <option value="<?php echo $a['MaTacGia']; ?>" <?php if ($book['MaTacGia'] == $a['MaTacGia']) echo 'selected'; ?>><?php echo htmlspecialchars($a['TenTacGia']); ?></option>
+                        <?php endwhile; ?>
+                    </select>
+
+                    <label>Dịch giả</label>
+                    <select name="MaDichGia">
+                        <option value="">-- Không có dịch giả --</option>
+                        <?php while ($d = mysqli_fetch_assoc($translators)): ?>
+                            <option value="<?php echo $d['MaDichGia']; ?>" <?php if ($currentMaDichGia === $d['MaDichGia']) echo 'selected'; ?>><?php echo htmlspecialchars($d['TenDichGia']); ?></option>
                         <?php endwhile; ?>
                     </select>
 

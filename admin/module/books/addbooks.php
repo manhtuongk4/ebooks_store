@@ -6,8 +6,9 @@ require_once dirname(__DIR__, 2) . '/layout/header.php';
 
 $msg = '';
 
-// Lấy danh sách tác giả, thể loại, NXB
+// Lấy danh sách tác giả, dịch giả, thể loại, NXB
 $authors = mysqli_query($conn, "SELECT MaTacGia, TenTacGia FROM tac_gia");
+$translators = mysqli_query($conn, "SELECT MaDichGia, TenDichGia FROM dich_gia");
 $categories = mysqli_query($conn, "SELECT MaTheLoai, TenTheLoai FROM the_loai");
 $publishers = mysqli_query($conn, "SELECT MaNXB, TenNXB FROM nha_xuat_ban");
 
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $MaSach = $next_id;
     $TenSach = mysqli_real_escape_string($conn, $_POST['TenSach']);
     $MaTacGia = mysqli_real_escape_string($conn, $_POST['MaTacGia']);
+    $MaDichGia = isset($_POST['MaDichGia']) ? mysqli_real_escape_string($conn, $_POST['MaDichGia']) : '';
     $MaTheLoai = mysqli_real_escape_string($conn, $_POST['MaTheLoai']);
     $MaNXB = mysqli_real_escape_string($conn, $_POST['MaNXB']);
     $DonGiaBan = floatval($_POST['DonGiaBan']);
@@ -42,6 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $insert = "INSERT INTO sach (MaSach, TenSach, MaTacGia, MaTheLoai, MaNXB, DonGiaBan, NamXuatBan, SoLuongTon, MoTa, KichThuoc, SoTrang, Anh) VALUES ('$MaSach', '$TenSach', '$MaTacGia', '$MaTheLoai', '$MaNXB', $DonGiaBan, $NamXuatBan, $SoLuongTon, '$MoTa', '$KichThuoc', $SoTrang, '$Anh')";
     if (mysqli_query($conn, $insert)) {
+        // Nếu chọn dịch giả thì lưu vào bảng sach_dichgia
+        if ($MaDichGia !== '') {
+            $sql_sd = "INSERT INTO sach_dichgia (MaSach, MaDichGia) VALUES ('$MaSach', '$MaDichGia')";
+            mysqli_query($conn, $sql_sd);
+        }
+
         $msg = 'Thêm sách thành công!';
         // Reset form
         $next_id = null;
@@ -195,6 +203,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <select name="MaTacGia" required>
                         <?php while ($a = mysqli_fetch_assoc($authors)): ?>
                             <option value="<?php echo $a['MaTacGia']; ?>"><?php echo htmlspecialchars($a['TenTacGia']); ?></option>
+                        <?php endwhile; ?>
+                    </select>
+
+                    <label>Dịch giả</label>
+                    <select name="MaDichGia">
+                        <option value="">-- Không có dịch giả --</option>
+                        <?php while ($d = mysqli_fetch_assoc($translators)): ?>
+                            <option value="<?php echo $d['MaDichGia']; ?>"><?php echo htmlspecialchars($d['TenDichGia']); ?></option>
                         <?php endwhile; ?>
                     </select>
 
