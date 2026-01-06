@@ -401,14 +401,14 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63472234" enctype="multipart/form-data">
                                         <div class="thumb">
-                                            <a class="image_thumb" href="/doc-duong-1-tai-ban" title="Dọc đường 1 (Tái bản)">
+                                            <a class="image_thumb" href="#" title="Dọc đường 1 (Tái bản)">
                                                 <img width="199" height="199" src="https://bizweb.dktcdn.net/100/363/455/products/doc-duong-1-2cm-01.jpg?v=1763966181280" data-src="https://bizweb.dktcdn.net/100/363/455/products/doc-duong-1-2cm-01.jpg?v=1763966181280" alt="Dọc đường 1 (Tái bản)" class="lazyload img-responsive center-block loaded" data-was-processed="true">
                                             </a>
                                             <div class="action-cart">
                                             </div>
                                         </div>
                                         <div class="info-product">
-                                            <h3 class="product-name"><a href="/doc-duong-1-tai-ban" title="Dọc đường 1 (Tái bản)">Dọc đường 1 (Tái bản)</a></h3>
+                                            <h3 class="product-name"><a href="#" title="Dọc đường 1 (Tái bản)">Dọc đường 1 (Tái bản)</a></h3>
 
                                             <div class="price-box">
                                                 Liên hệ
@@ -423,14 +423,14 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63472119" enctype="multipart/form-data">
                                         <div class="thumb">
-                                            <a class="image_thumb" href="/bien-so-tinh-yeu" title="Biến số tình yêu">
+                                            <a class="image_thumb" href="#" title="Biến số tình yêu">
                                                 <img width="199" height="199" src="https://bizweb.dktcdn.net/100/363/455/products/bien-so-tinh-yeu-03.jpg?v=1763966037290" data-src="https://bizweb.dktcdn.net/100/363/455/products/bien-so-tinh-yeu-03.jpg?v=1763966037290" alt="Biến số tình yêu" class="lazyload img-responsive center-block loaded" data-was-processed="true">
                                             </a>
                                             <div class="action-cart">
                                             </div>
                                         </div>
                                         <div class="info-product">
-                                            <h3 class="product-name"><a href="/bien-so-tinh-yeu" title="Biến số tình yêu">Biến số tình yêu</a></h3>
+                                            <h3 class="product-name"><a href="#" title="Biến số tình yêu">Biến số tình yêu</a></h3>
 
                                             <div class="price-box">
                                                 Liên hệ
@@ -445,14 +445,14 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63471979" enctype="multipart/form-data">
                                         <div class="thumb">
-                                            <a class="image_thumb" href="/tay-nguoi-lanh-gia-nobel-van-chuong" title="Tay người lạnh giá (Nobel văn chương)">
+                                            <a class="image_thumb" href="#" title="Tay người lạnh giá (Nobel văn chương)">
                                                 <img width="199" height="199" src="https://bizweb.dktcdn.net/100/363/455/products/tay-nguoi-lanh-gia-01.jpg?v=1763965871700" data-src="https://bizweb.dktcdn.net/100/363/455/products/tay-nguoi-lanh-gia-01.jpg?v=1763965871700" alt="Tay người lạnh giá (Nobel văn chương)" class="lazyload img-responsive center-block loaded" data-was-processed="true">
                                             </a>
                                             <div class="action-cart">
                                             </div>
                                         </div>
                                         <div class="info-product">
-                                            <h3 class="product-name"><a href="/tay-nguoi-lanh-gia-nobel-van-chuong" title="Tay người lạnh giá (Nobel văn chương)">Tay người lạnh giá (Nobel văn chương)</a></h3>
+                                            <h3 class="product-name"><a href="#" title="Tay người lạnh giá (Nobel văn chương)">Tay người lạnh giá (Nobel văn chương)</a></h3>
 
                                             <div class="price-box">
                                                 Liên hệ
@@ -467,14 +467,14 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63463590" enctype="multipart/form-data">
                                         <div class="thumb">
-                                            <a class="image_thumb" href="/ky-nang-song-toan-dien-ranh-gioi-co-the" title="Kỹ năng sống toàn diện: Ranh giới cơ thể">
+                                            <a class="image_thumb" href="#" title="Kỹ năng sống toàn diện: Ranh giới cơ thể">
                                                 <img width="199" height="199" src="https://bizweb.dktcdn.net/100/363/455/products/ky-nang-song-toan-dien-ranh-gioi-co-the-cover-01.jpg?v=1763965263643" data-src="https://bizweb.dktcdn.net/100/363/455/products/ky-nang-song-toan-dien-ranh-gioi-co-the-cover-01.jpg?v=1763965263643" alt="Kỹ năng sống toàn diện: Ranh giới cơ thể" class="lazyload img-responsive center-block loaded" data-was-processed="true">
                                             </a>
                                             <div class="action-cart">
                                             </div>
                                         </div>
                                         <div class="info-product">
-                                            <h3 class="product-name"><a href="/ky-nang-song-toan-dien-ranh-gioi-co-the" title="Kỹ năng sống toàn diện: Ranh giới cơ thể">Kỹ năng sống toàn diện: Ranh giới cơ thể</a></h3>
+                                            <h3 class="product-name"><a href="#" title="Kỹ năng sống toàn diện: Ranh giới cơ thể">Kỹ năng sống toàn diện: Ranh giới cơ thể</a></h3>
 
                                             <div class="price-box">
                                                 Liên hệ
@@ -489,14 +489,14 @@ $page_title = "Trang chủ - Mờ Tê VN";
 
                                     <form action="/cart/add" method="post" class="variants product-action wishItem" data-cart-form="" data-id="product-actions-63462918" enctype="multipart/form-data">
                                         <div class="thumb">
-                                            <a class="image_thumb" href="/ky-nang-song-toan-dien-the-gioi-gan-ket" title="Kỹ năng sống toàn diện: Thế giới gắn kết">
+                                            <a class="image_thumb" href="#" title="Kỹ năng sống toàn diện: Thế giới gắn kết">
                                                 <img width="199" height="199" src="https://bizweb.dktcdn.net/100/363/455/products/ky-nang-song-toan-dien-the-gioi-gan-ket-cover-01.jpg?v=1763965236143" data-src="https://bizweb.dktcdn.net/100/363/455/products/ky-nang-song-toan-dien-the-gioi-gan-ket-cover-01.jpg?v=1763965236143" alt="Kỹ năng sống toàn diện: Thế giới gắn kết" class="lazyload img-responsive center-block loaded" data-was-processed="true">
                                             </a>
                                             <div class="action-cart">
                                             </div>
                                         </div>
                                         <div class="info-product">
-                                            <h3 class="product-name"><a href="/ky-nang-song-toan-dien-the-gioi-gan-ket" title="Kỹ năng sống toàn diện: Thế giới gắn kết">Kỹ năng sống toàn diện: Thế giới gắn kết</a></h3>
+                                            <h3 class="product-name"><a href="#" title="Kỹ năng sống toàn diện: Thế giới gắn kết">Kỹ năng sống toàn diện: Thế giới gắn kết</a></h3>
 
                                             <div class="price-box">
                                                 Liên hệ
