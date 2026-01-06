@@ -579,13 +579,13 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                                     </li>
 
                                     <li class="nav-item has-child  ">
-                                        <a class="a-img caret-down" href="/tin-sach" title="Tin Sách">
+                                        <a class="a-img caret-down" href="/EBOOKS_STORE/customer/module/booknews/readerbookreview.php" title="Tin Sách">
                                             Tin Sách
                                         </a>
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="item_small">
                                             <li>
-                                                <a class="" href="/tin-mo-te" title="Tin Mờ Tê">
+                                                <a class="" href="/EBOOKS_STORE/customer/module/booknews/introduction.php" title="Tin Mờ Tê">
                                                     Tin Mờ Tê
                                                 </a>
                                             </li>
@@ -595,12 +595,12 @@ if (!empty($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="" href="/review-sach-tren-bao-chi" title="Tin sách trên báo chí">
+                                                <a class="" href="/EBOOKS_STORE/customer/module/booknews/press.php" title="Tin sách trên báo chí">
                                                     Tin sách trên báo chí
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="" href="/bien-tap-vien-gioi-thieu" title="Biên tập viên giới thiệu">
+                                                <a class="" href="/EBOOKS_STORE/customer/module/booknews/editor_introduction.php" title="Biên tập viên giới thiệu">
                                                     Biên tập viên giới thiệu
                                                 </a>
                                             </li>
